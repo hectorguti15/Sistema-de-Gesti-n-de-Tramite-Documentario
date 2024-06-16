@@ -1,22 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package modelos;
 
-/**
- *
- * @author FELIPE
- */
 public class Administrador extends Persona{
     private int numeroTrabajador;
-    private PersonalDependencia[] personalDependencia; 
+    private PersonaDependencia[] personalDependencia; 
     
-    public Administrador(String nombre, String apellido, int numeroTrabajador, PersonalDependencia[] personalDependencia){
-        super(nombre, apellido);
+    public Administrador(String nombre, String apellido, String correoElectronico,int numeroTrabajador, PersonaDependencia[] personalDependencia){
+        super(nombre, apellido, correoElectronico);
         this.numeroTrabajador = numeroTrabajador;
         this.personalDependencia = personalDependencia;
     }
     
+    public void setNumeroTrabajador(int numeroTrabajador){
+        this.numeroTrabajador = numeroTrabajador;
+    }
     
+    public int getNumeroTrabajador(){
+        return numeroTrabajador;
+    }
+    
+    public void setPersonalDependencia(PersonaDependencia[] personalDependencia){
+        this.personalDependencia = personalDependencia; 
+    }
+    
+    public PersonaDependencia[] getPersonalDependencia(){
+        return personalDependencia;
+    }
 }

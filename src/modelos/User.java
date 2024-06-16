@@ -9,8 +9,8 @@ public class User extends Persona {
     private int numeroIdentificacion;
     private int numeroExpediente;
 
-    public User(TipoIdentificacion tipoIdentificacion, int numeroIdentificacion, String nombre, String apellido, int numeroExpediente) {
-        super(nombre, apellido);
+    public User( String nombre, String apellido, String correoElectronico, TipoIdentificacion tipoIdentificacion, int numeroIdentificacion, int numeroExpediente) {
+        super(nombre, apellido, correoElectronico);
         this.tipoIdentificacion = tipoIdentificacion;
         this.numeroIdentificacion = numeroIdentificacion;
         this.numeroExpediente = numeroExpediente;
