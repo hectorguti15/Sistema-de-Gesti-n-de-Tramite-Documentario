@@ -1,59 +1,71 @@
-
 package modelos;
 
 import Enums.TipoPrioridad;
+import java.io.File;
 
 public class Expediente {
+
     private int numeroExpediente;
     private TipoPrioridad prioridad;
     private User user;
-    private String documento;
+    private String asunto;
+    private File documentoReferencia;
     private TiempoExpediente tiempoExpediente;
-    
-    
-    
-    public Expediente(int numeroExpediente, TipoPrioridad prioridad, User user, String documento, TiempoExpediente tiempoExpediente){
+
+    public Expediente(int numeroExpediente, TipoPrioridad prioridad, String asunto, User user, File documentoReferencia, TiempoExpediente tiempoExpediente) {
         this.numeroExpediente = numeroExpediente;
         this.prioridad = prioridad;
         this.user = user;
-        this.documento = documento;
+        this.asunto = asunto;
+        this.documentoReferencia = documentoReferencia;
         this.tiempoExpediente = tiempoExpediente;
     }
-    
-    public void setNumeroExpediente(int numeroExpediente){
+
+    public void setNumeroExpediente(int numeroExpediente) {
         this.numeroExpediente = numeroExpediente;
     }
-    public int getNumeroExpediente(){
+
+    public int getNumeroExpediente() {
         return numeroExpediente;
     }
-    
-    public void setPrioridad(TipoPrioridad prioridad){
+
+    public void setPrioridad(TipoPrioridad prioridad) {
         this.prioridad = prioridad;
     }
-    public TipoPrioridad getPrioridad(){
+
+    public TipoPrioridad getPrioridad() {
         return prioridad;
     }
-    public void setUser(User user){
+
+    public void setUser(User user) {
         this.user = user;
     }
-    public User getUser(){
+
+    public User getUser() {
         return user;
     }
-    
-    public void setDocumento(String documento){
-        this.documento = documento;
+
+    public void setDocumento(File documentoReferencia) {
+        this.documentoReferencia = documentoReferencia;
     }
-    
-    public String getDocumento(){
-        return documento;
+
+    public File getDocumento() {
+        return documentoReferencia;
     }
-    
-    
-    public void setTiempoExpediente(TiempoExpediente tiempoExpediente){
+
+    public void setTiempoExpediente(TiempoExpediente tiempoExpediente) {
         this.tiempoExpediente = tiempoExpediente;
     }
-    
-    public TiempoExpediente getTiempoExpediente(){
+
+    public TiempoExpediente getTiempoExpediente() {
         return tiempoExpediente;
+    }
+
+    public void setAsunto(String asunto) {
+        this.asunto = asunto;
+    }
+
+    public String getAsunto() {
+        return asunto;
     }
 }

@@ -1,5 +1,7 @@
-
 package sistemaGestionTramiteDocumentario;
+
+import interfaces.LandingPage;
+
 
 
 public class SistemaGestionTramiteDocumentario {
@@ -8,7 +10,8 @@ public class SistemaGestionTramiteDocumentario {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        LandingPage main = new LandingPage();
+        main.setVisible(true);
     }
-    
+
 }
