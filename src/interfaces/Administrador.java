@@ -176,7 +176,28 @@ public class Administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_fieldEmailActionPerformed
 
     private void iniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSesionActionPerformed
-        JOptionPane.showMessageDialog(this, "Todos los campos son requeridos", "Error", JOptionPane.ERROR_MESSAGE);        // TODO add your handling code here:
+        String nombreValue = nombreField.getText();
+        String apellidoValue = apellidoField.getText();
+        String nAdministradorValue = fieldAdministrador.getText();
+        String correoElectronicoValue = fieldEmail.getText();
+
+        if(nombre == "" || apellido == "" || nAdministradorValue == "" || correoElectronico ==""){
+             JOptionPane.showMessageDialog(this, "Todos los campos son requeridos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        try{
+            if(Utils.esEmailValido(correoElectronicoValue)){
+               throw new IllegalArgumentException("Correo electrónico no válido");
+            }
+            //Verificar match entre codigo de administrador y correoElectornico
+            
+            //Enviar al panel de Administrador
+    
+
+        }
+        catch(IllegalArgumentException e){
+             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+               // TODO add your handling code here:
     }//GEN-LAST:event_iniciarSesionActionPerformed
 
     private void fieldAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldAdministradorActionPerformed

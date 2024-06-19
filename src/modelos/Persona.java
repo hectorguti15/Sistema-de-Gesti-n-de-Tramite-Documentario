@@ -33,15 +33,8 @@ public class Persona {
     }
 
     public void setCorreoElectronico(String correoElectronico) {
-
-        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-
-        Pattern pattern = Pattern.compile(regex);
-
         try {
-
-            Matcher matcher = pattern.matcher(correoElectronico);
-            if (matcher.matches()) {
+            if (Utils.esEmailValido(correoElectronico)) {
                 this.correoElectronico = correoElectronico;
             } else {
                 throw new IllegalArgumentException("Correo electrónico no válido");

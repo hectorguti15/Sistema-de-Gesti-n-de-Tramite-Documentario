@@ -26,4 +26,5 @@ public class Administrador extends Persona{
     public PersonaDependencia[] getPersonalDependencia(){
         return personalDependencia;
     }
+
 }
