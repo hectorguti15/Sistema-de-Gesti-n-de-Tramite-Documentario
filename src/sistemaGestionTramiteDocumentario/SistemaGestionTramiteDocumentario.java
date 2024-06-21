@@ -2,8 +2,6 @@ package sistemaGestionTramiteDocumentario;
 
 import interfaces.LandingPage;
 
-
-
 public class SistemaGestionTramiteDocumentario {
 
     /**
@@ -12,6 +10,7 @@ public class SistemaGestionTramiteDocumentario {
     public static void main(String[] args) {
         LandingPage main = new LandingPage();
         main.setVisible(true);
+        
     }
 
 }

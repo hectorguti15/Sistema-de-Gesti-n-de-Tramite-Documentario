@@ -4,7 +4,13 @@
  */
 package interfaces;
 
-import javax.swing.JOptionPane;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 
 /**
  *
@@ -17,6 +23,7 @@ public class Administrador extends javax.swing.JFrame {
      */
     public Administrador() {
         initComponents();
+        addDynamicButtons();
     }
 
     /**
@@ -28,181 +35,113 @@ public class Administrador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        iniciarSesionAdministrador = new javax.swing.JLabel();
-        nombre = new javax.swing.JLabel();
-        fieldAdministrador = new javax.swing.JTextField();
-        nAdministrador = new javax.swing.JLabel();
-        apellidoField = new javax.swing.JTextField();
-        apellido = new javax.swing.JLabel();
-        nombreField = new javax.swing.JTextField();
-        email = new javax.swing.JLabel();
-        fieldEmail = new javax.swing.JTextField();
-        iniciarSesion = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        jLabel2 = new javax.swing.JLabel();
+        scrollable = new javax.swing.JScrollPane();
+        panel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        iniciarSesionAdministrador.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        iniciarSesionAdministrador.setForeground(new java.awt.Color(102, 102, 102));
-        iniciarSesionAdministrador.setText("Iniciar sesión como administrador");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setText("Administrador");
 
-        nombre.setText("Nombre");
+        jProgressBar1.setValue(80);
 
-        fieldAdministrador.setForeground(new java.awt.Color(102, 102, 102));
-        fieldAdministrador.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        fieldAdministrador.setToolTipText("Número de administrador");
-        fieldAdministrador.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 15));
-        fieldAdministrador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldAdministradorActionPerformed(evt);
-            }
-        });
+        jLabel2.setText("N° expedientes resueltos");
 
-        nAdministrador.setText("N° administrador");
+        scrollable.setBackground(new java.awt.Color(204, 204, 204));
+        scrollable.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollable.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        apellidoField.setForeground(new java.awt.Color(102, 102, 102));
-        apellidoField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        apellidoField.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 15));
-        apellidoField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                apellidoFieldActionPerformed(evt);
-            }
-        });
+        panel.setBackground(new java.awt.Color(204, 255, 255));
+        panel.setDoubleBuffered(false);
 
-        apellido.setText("Apellido");
+        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
+        panel.setLayout(panelLayout);
+        panelLayout.setHorizontalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 830, Short.MAX_VALUE)
+        );
+        panelLayout.setVerticalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 119, Short.MAX_VALUE)
+        );
 
-        nombreField.setForeground(new java.awt.Color(102, 102, 102));
-        nombreField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        nombreField.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 15));
-        nombreField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreFieldActionPerformed(evt);
-            }
-        });
-
-        email.setText("E-mail");
-
-        fieldEmail.setForeground(new java.awt.Color(102, 102, 102));
-        fieldEmail.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        fieldEmail.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 15));
-        fieldEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldEmailActionPerformed(evt);
-            }
-        });
-
-        iniciarSesion.setBackground(new java.awt.Color(51, 51, 51));
-        iniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
-        iniciarSesion.setText("Iniciar sesión");
-        iniciarSesion.setBorder(null);
-        iniciarSesion.setBorderPainted(false);
-        iniciarSesion.setFocusPainted(false);
-        iniciarSesion.setFocusable(false);
-        iniciarSesion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                iniciarSesionActionPerformed(evt);
-            }
-        });
+        scrollable.setViewportView(panel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(139, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(apellido)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(apellidoField, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(nombre)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(nombreField, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(nAdministrador)
-                                .addGap(18, 18, 18)
-                                .addComponent(fieldAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(email)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(fieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(iniciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(124, 124, 124))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(iniciarSesionAdministrador)
-                        .addGap(134, 134, 134))))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(scrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(iniciarSesionAdministrador)
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nAdministrador))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombre)
-                    .addComponent(nombreField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(apellidoField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(apellido))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(email))
-                .addGap(26, 26, 26)
-                .addComponent(iniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollable, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+      private void addDynamicButtons() {
+        int numberOfButtons = 10; 
+        int horizontalGap = 10; 
+        int verticalGap = 10;
 
-    private void apellidoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_apellidoFieldActionPerformed
+        panel.setLayout(new GridLayout(1, numberOfButtons, horizontalGap, verticalGap));
 
-    private void nombreFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nombreFieldActionPerformed
+        for (int i = 1; i <= numberOfButtons; i++) {
+            JButton button = new JButton("Button " + i);
+            button.setBackground(new Color(173, 216, 230)); 
+            button.setBorderPainted(false);
+            button.setFocusPainted(false);
+            button.setContentAreaFilled(false);
+            button.setOpaque(true);
+            button.setPreferredSize(new Dimension(100, 40)); 
+            button.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
 
-    private void fieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fieldEmailActionPerformed
+            // Crear bordes redondeados
+            button.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(173, 216, 230), 1, true),
+                    BorderFactory.createEmptyBorder(5, 15, 5, 15)
+            ));
 
-    private void iniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSesionActionPerformed
-        String nombreValue = nombreField.getText();
-        String apellidoValue = apellidoField.getText();
-        String nAdministradorValue = fieldAdministrador.getText();
-        String correoElectronicoValue = fieldEmail.getText();
+            final int index = i; 
 
-        if(nombre == "" || apellido == "" || nAdministradorValue == "" || correoElectronico ==""){
-             JOptionPane.showMessageDialog(this, "Todos los campos son requeridos", "Error", JOptionPane.ERROR_MESSAGE);
+            // ActionListener para manejar clics en el botón
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                   
+                    System.out.println("Botón " + index + " presionado");
+                 
+                }
+            });
+
+            panel.add(button);
         }
-        try{
-            if(Utils.esEmailValido(correoElectronicoValue)){
-               throw new IllegalArgumentException("Correo electrónico no válido");
-            }
-            //Verificar match entre codigo de administrador y correoElectornico
-            
-            //Enviar al panel de Administrador
-    
 
-        }
-        catch(IllegalArgumentException e){
-             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-               // TODO add your handling code here:
-    }//GEN-LAST:event_iniciarSesionActionPerformed
-
-    private void fieldAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldAdministradorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fieldAdministradorActionPerformed
+        // Actualizar el panel para reflejar los cambios
+        panel.revalidate();
+        panel.repaint();
+    }
 
     /**
      * @param args the command line arguments
@@ -235,21 +174,15 @@ public class Administrador extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Administrador().setVisible(true);
-
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel apellido;
-    private javax.swing.JTextField apellidoField;
-    private javax.swing.JLabel email;
-    private javax.swing.JTextField fieldAdministrador;
-    private javax.swing.JTextField fieldEmail;
-    private javax.swing.JButton iniciarSesion;
-    private javax.swing.JLabel iniciarSesionAdministrador;
-    private javax.swing.JLabel nAdministrador;
-    private javax.swing.JLabel nombre;
-    private javax.swing.JTextField nombreField;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JPanel panel;
+    private javax.swing.JScrollPane scrollable;
     // End of variables declaration//GEN-END:variables
 }

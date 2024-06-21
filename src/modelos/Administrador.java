@@ -2,20 +2,20 @@
 package modelos;
 
 public class Administrador extends Persona{
-    private int numeroTrabajador;
+    private String numeroTrabajador;
     private PersonaDependencia[] personalDependencia; 
     
-    public Administrador(String nombre, String apellido, String correoElectronico,int numeroTrabajador, PersonaDependencia[] personalDependencia){
+    public Administrador(String nombre, String apellido, String correoElectronico,String numeroTrabajador, PersonaDependencia[] personalDependencia){
         super(nombre, apellido, correoElectronico);
         this.numeroTrabajador = numeroTrabajador;
         this.personalDependencia = personalDependencia;
     }
     
-    public void setNumeroTrabajador(int numeroTrabajador){
+    public void setNumeroTrabajador(String numeroTrabajador){
         this.numeroTrabajador = numeroTrabajador;
     }
     
-    public int getNumeroTrabajador(){
+    public String getNumeroTrabajador(){
         return numeroTrabajador;
     }
     
@@ -25,6 +25,10 @@ public class Administrador extends Persona{
     
     public PersonaDependencia[] getPersonalDependencia(){
         return personalDependencia;
+    }
+    
+    public boolean esAdministrador(String correoElectronico,String numeroTrabajador){
+        return this.getCorreoElectronico().equals(correoElectronico) && this.numeroTrabajador.equals(numeroTrabajador);
     }
 
 }

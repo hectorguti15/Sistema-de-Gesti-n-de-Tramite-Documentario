@@ -100,7 +100,7 @@ public class LandingPage extends javax.swing.JFrame {
 
     private void IniciarSesionAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSesionAdministradorActionPerformed
         dispose();
-        Administrador administradorPage = new Administrador();
+        AdministradorLogin administradorPage = new AdministradorLogin();
         administradorPage.setVisible(true);
     }//GEN-LAST:event_IniciarSesionAdministradorActionPerformed
 
