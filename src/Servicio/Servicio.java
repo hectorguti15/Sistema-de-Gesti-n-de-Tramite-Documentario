@@ -1,10 +1,10 @@
-package Servicios;
+package Servicio;
 
 import modelos.Administrador;
 import modelos.AreaDependencia;
 import modelos.PersonaDependencia;
 
-public class Servicios {
+public class Servicio {
 
     public static Administrador administrador;
 
