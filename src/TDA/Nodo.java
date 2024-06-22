@@ -1,28 +1,29 @@
-
 package TDA;
 
-import modelos.Expediente;
 
+public class Nodo<T> {
 
-public class Nodo {
+    private T value;
+    private Nodo<T> next;
 
-    private Expediente value;
-    private Nodo next;
-
-    public Nodo(Expediente value) {
+    public Nodo(T value) {
         this.value = value;
         this.next = null;
     }
 
-    public Expediente getValue() {
+    public T getValue() {
         return value;
     }
 
-    public Nodo getNext() {
+    public void setValue(T value) {
+        this.value = value;
+    }
+
+    public Nodo<T> getNext() {
         return next;
     }
 
-    public void setNext(Nodo next) {
+    public void setNext(Nodo<T> next) {
         this.next = next;
     }
 }

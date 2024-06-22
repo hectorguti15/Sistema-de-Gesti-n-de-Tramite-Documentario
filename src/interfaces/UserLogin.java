@@ -5,7 +5,6 @@
 package interfaces;
 
 import Enums.TipoIdentificacion;
-import Servicio.Servicio;
 import javax.swing.DefaultComboBoxModel;
 import modelos.User;
 
@@ -239,7 +238,7 @@ public class UserLogin extends javax.swing.JFrame {
       
         User usuarioNuevo = new User(nombreValue, apellidoValue, correoElectronicoValue, TipoIdentificacion.fromStringToEnum(identificacion), DNIUser);
 
-        Servicio.addUser(usuarioNuevo);
+        Servicio.UsersServicios.agregarUsuario(usuarioNuevo);
         
         UserExpediente userExpediente = new UserExpediente(correoElectronicoValue);
         userExpediente.setVisible(true);

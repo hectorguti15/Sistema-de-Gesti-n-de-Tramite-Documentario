@@ -1,24 +1,19 @@
-
 package TDA;
 
-import modelos.Expediente;
-
 public class ListaEnlazada<T> {
-     private Nodo L;
+
+    private Nodo<T> L;
 
     public ListaEnlazada() {
         this.L = null;
     }
 
     public boolean estaVacia() {
-        if (this.L == null) {
-            return true;
-        }
-        return false;
+        return this.L == null;
     }
 
     public void mostrar() {
-        Nodo ptr = this.L;
+        Nodo<T> ptr = this.L;
         while (ptr != null) {
             System.out.print(ptr.getValue() + " -> ");
             ptr = ptr.getNext();
@@ -26,13 +21,13 @@ public class ListaEnlazada<T> {
         System.out.println("");
     }
 
-    public void insertar(Expediente expediente) {
-        Nodo nuevo = new Nodo(expediente);
+    public void insertar(T valor) {
+        Nodo<T> nuevo = new Nodo<>(valor);
 
         if (estaVacia()) {
             this.L = nuevo;
         } else {
-            Nodo ptr = this.L;
+            Nodo<T> ptr = this.L;
             while (ptr.getNext() != null) {
                 ptr = ptr.getNext();
             }
@@ -40,9 +35,33 @@ public class ListaEnlazada<T> {
         }
     }
 
-    public Expediente buscar(Expediente expediente) {
-        Nodo ptr = this.L;
-        while (ptr != null && ptr.getValue() != expediente) {
+    public void eliminar(T valor) {
+        if (estaVacia()) {
+            System.out.println("La lista está vacía");
+            return;
+        }
+        if (this.L.getValue().equals(valor)) {
+            this.L = this.L.getNext();
+            return;
+        }
+        Nodo<T> ptr = this.L;
+        Nodo<T> anterior = null;
+
+        while (ptr != null && !ptr.getValue().equals(valor)) {
+            anterior = ptr;
+            ptr = ptr.getNext();
+        }
+        if (ptr == null) {
+            System.out.println("El valor no se encuentra en la lista");
+            return;
+        }
+        anterior.setNext(ptr.getNext());
+    }
+   
+
+    public T buscar(T valor) {
+        Nodo<T> ptr = this.L;
+        while (ptr != null && !ptr.getValue().equals(valor)) {
             ptr = ptr.getNext();
         }
         if (ptr == null) {
@@ -50,6 +69,10 @@ public class ListaEnlazada<T> {
         } else {
             return ptr.getValue();
         }
+    }
+    
+    public Nodo<T> obtenerPrimero(){
+        return L;
     }
 
 }

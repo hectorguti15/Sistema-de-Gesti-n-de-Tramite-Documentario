@@ -177,22 +177,24 @@ public class UserExpediente extends javax.swing.JFrame {
     private void enviarRealizarNuevoExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarRealizarNuevoExpedienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_enviarRealizarNuevoExpedienteActionPerformed
-
+    java.io.File selectedFile = null;
     private void elegirArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_elegirArchivoActionPerformed
-        String tipoExpedienteValue = (String) tipoExpediente.getSelectedItem();
-        String asuntoValue = jTextArea2.getText();
 
         JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Documentos", "doc", "docx", "pdf");
         fileChooser.setFileFilter(filter);
 
         int returnValue = fileChooser.showOpenDialog(null);
-        java.io.File selectedFile = null;
+
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             selectedFile = fileChooser.getSelectedFile();
             noDocumentoSeleccionado.setText(selectedFile.getName());
         }
+    }//GEN-LAST:event_elegirArchivoActionPerformed
 
+    private void realizarNuevoExpediente() {
+        String tipoExpedienteValue = (String) tipoExpediente.getSelectedItem();
+        String asuntoValue = jTextArea2.getText();
         int prioridadValue;
         switch (TipoExpediente.fromStringToEnum(tipoExpedienteValue)) {
             case SOLICITUD:
@@ -224,12 +226,12 @@ public class UserExpediente extends javax.swing.JFrame {
                 break;
         }
 
-        User foundUser = Servicio.Servicio.getUser(correoElectronico);
+        User foundUser = Servicio.UsersServicios.obtenerUsuario(this.correoElectronico);
         TiempoExpediente tiempoExpediente = new TiempoExpediente();
         tiempoExpediente.setFechaInicial(LocalDateTime.now());
         Expediente nuevoExpediente = new Expediente(Utils.Utils.generarIdentificador(), prioridadValue, TipoExpediente.fromStringToEnum(tipoExpedienteValue), asuntoValue, foundUser, selectedFile, tiempoExpediente);
-
-    }//GEN-LAST:event_elegirArchivoActionPerformed
+        Servicio.ExpedientesServicios.agregarExpediente(nuevoExpediente);
+    }
 
     /**
      * @param args the command line arguments

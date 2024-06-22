@@ -6,7 +6,6 @@ package interfaces;
 
 import Utils.Utils;
 import javax.swing.JOptionPane;
-import Servicio.Servicio;
 
 /**
  *
@@ -195,7 +194,7 @@ public class AdministradorLogin extends javax.swing.JFrame {
            
             //Verificar match entre codigo de administrador y correoElectornico
             //correto: "mlopez@gmail.com" "EDF173KZ"
-            if(!Servicio.administrador.esAdministrador(correoElectronicoValue, nAdministradorValue)){
+            if(!Servicio.AdministradorServicio.administrador.esAdministrador(correoElectronicoValue, nAdministradorValue)){
             
                 throw new IllegalArgumentException("Este ingreso es solo para administradores");
             }
