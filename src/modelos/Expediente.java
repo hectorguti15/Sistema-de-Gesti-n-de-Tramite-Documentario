@@ -1,39 +1,42 @@
 package modelos;
 
-import Enums.TipoPrioridad;
+import Enums.TipoExpediente;
 import java.io.File;
 
 public class Expediente {
 
-    private int numeroExpediente;
-    private TipoPrioridad prioridad;
+    private String numeroExpediente;
+    private int prioridad;
+    private TipoExpediente tipoExpediente;
     private User user;
     private String asunto;
     private File documentoReferencia;
     private TiempoExpediente tiempoExpediente;
-
-    public Expediente(int numeroExpediente, TipoPrioridad prioridad, String asunto, User user, File documentoReferencia, TiempoExpediente tiempoExpediente) {
+    
+    
+    public Expediente(String numeroExpediente, int prioridad, TipoExpediente tipoExpediente, String asunto, User user, File documentoReferencia, TiempoExpediente tiempoExpediente) {
         this.numeroExpediente = numeroExpediente;
         this.prioridad = prioridad;
+        this.tipoExpediente = tipoExpediente;
         this.user = user;
         this.asunto = asunto;
         this.documentoReferencia = documentoReferencia;
         this.tiempoExpediente = tiempoExpediente;
     }
 
-    public void setNumeroExpediente(int numeroExpediente) {
+    public void setNumeroExpediente(String numeroExpediente) {
         this.numeroExpediente = numeroExpediente;
     }
 
-    public int getNumeroExpediente() {
+    public String getNumeroExpediente() {
         return numeroExpediente;
     }
 
-    public void setPrioridad(TipoPrioridad prioridad) {
+    public void setPrioridad(int prioridad) {
         this.prioridad = prioridad;
     }
 
-    public TipoPrioridad getPrioridad() {
+    public int getPrioridad() {
         return prioridad;
     }
 
@@ -43,14 +46,6 @@ public class Expediente {
 
     public User getUser() {
         return user;
-    }
-
-    public void setDocumento(File documentoReferencia) {
-        this.documentoReferencia = documentoReferencia;
-    }
-
-    public File getDocumento() {
-        return documentoReferencia;
     }
 
     public void setTiempoExpediente(TiempoExpediente tiempoExpediente) {
@@ -67,5 +62,21 @@ public class Expediente {
 
     public String getAsunto() {
         return asunto;
+    }
+
+    public TipoExpediente getTipoExpediente() {
+        return tipoExpediente;
+    }
+
+    public void setTipoExpediente(TipoExpediente tipoExpediente) {
+        this.tipoExpediente = tipoExpediente;
+    }
+
+    public File getDocumentoReferencia() {
+        return documentoReferencia;
+    }
+
+    public void setDocumentoReferencia(File documentoReferencia) {
+        this.documentoReferencia = documentoReferencia;
     }
 }

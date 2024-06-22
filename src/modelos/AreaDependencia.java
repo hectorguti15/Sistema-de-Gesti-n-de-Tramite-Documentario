@@ -32,7 +32,6 @@ public class AreaDependencia {
 
     public void agregarPersona(PersonaDependencia persona) {
         if (contadorPersonas == personalDependencia.length) {
-            // Ve si el arregla esta lleno y le suma uno (lista dinamica)
             personalDependencia = Arrays.copyOf(personalDependencia, personalDependencia.length + 1);
         }
 

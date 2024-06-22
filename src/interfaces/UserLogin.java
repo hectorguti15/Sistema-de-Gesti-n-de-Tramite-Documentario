@@ -5,27 +5,27 @@
 package interfaces;
 
 import Enums.TipoIdentificacion;
+import Servicio.Servicio;
 import javax.swing.DefaultComboBoxModel;
+import modelos.User;
 
 /**
  *
  * @author hecto
  */
-public class User extends javax.swing.JFrame {
+public class UserLogin extends javax.swing.JFrame {
 
     /**
      * Creates new form User
      */
-    public User() {
+    public UserLogin() {
         initComponents();
         DefaultComboBoxModel<String> comboBoxModel = new DefaultComboBoxModel<>();
 
-         
         for (TipoIdentificacion tipo : TipoIdentificacion.values()) {
             comboBoxModel.addElement(TipoIdentificacion.fromEnumToString(tipo));
         }
 
-    
         multipleChoiceUser.setModel(comboBoxModel);
     }
 
@@ -231,7 +231,19 @@ public class User extends javax.swing.JFrame {
     }//GEN-LAST:event_fieldDniUserActionPerformed
 
     private void iniciarSesionuSERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSesionuSERActionPerformed
-        // TODO add your handling code here:
+        String nombreValue = fieldNombreUser.getText();
+        String apellidoValue = fieldApellidoUser.getText();
+        String identificacion = (String) multipleChoiceUser.getSelectedItem();
+        String correoElectronicoValue = fieldEmailUser.getText();
+        String DNIUser = fieldDniUser.getText();
+      
+        User usuarioNuevo = new User(nombreValue, apellidoValue, correoElectronicoValue, TipoIdentificacion.fromStringToEnum(identificacion), DNIUser);
+
+        Servicio.addUser(usuarioNuevo);
+        
+        UserExpediente userExpediente = new UserExpediente(correoElectronicoValue);
+        userExpediente.setVisible(true);
+
     }//GEN-LAST:event_iniciarSesionuSERActionPerformed
 
     private void multipleChoiceUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multipleChoiceUserActionPerformed
@@ -255,20 +267,21 @@ public class User extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new User().setVisible(true);
+                new UserLogin().setVisible(true);
             }
         });
     }

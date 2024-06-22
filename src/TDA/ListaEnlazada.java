@@ -3,7 +3,7 @@ package TDA;
 
 import modelos.Expediente;
 
-public class ListaEnlazada {
+public class ListaEnlazada<T> {
      private Nodo L;
 
     public ListaEnlazada() {

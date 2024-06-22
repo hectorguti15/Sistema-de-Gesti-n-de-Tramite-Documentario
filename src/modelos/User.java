@@ -6,14 +6,14 @@ public class User extends Persona {
 
     //Si es trabajador ingresara su código ulima, sino su dni, y si es institución su RUC
     private TipoIdentificacion tipoIdentificacion;
-    private int numeroIdentificacion;
-    private int numeroExpediente;
+    private String numeroIdentificacion;
+    private String numeroExpediente;
 
-    public User( String nombre, String apellido, String correoElectronico, TipoIdentificacion tipoIdentificacion, int numeroIdentificacion, int numeroExpediente) {
+    public User( String nombre, String apellido, String correoElectronico, TipoIdentificacion tipoIdentificacion, String numeroIdentificacion) {
         super(nombre, apellido, correoElectronico);
         this.tipoIdentificacion = tipoIdentificacion;
         this.numeroIdentificacion = numeroIdentificacion;
-        this.numeroExpediente = numeroExpediente;
+        this.numeroExpediente = null;
 
     }
 
@@ -25,18 +25,18 @@ public class User extends Persona {
         return tipoIdentificacion;
     }
 
-    public void setNumeroIdentificacion(int numeroIdentificacion) {
+    public void setNumeroIdentificacion(String numeroIdentificacion) {
         this.numeroIdentificacion = numeroIdentificacion;
     }
 
-    public int getNumeroIdentificacion() {
+    public String getNumeroIdentificacion() {
         return numeroIdentificacion;
 
     }
-    public void setNumeroExpediente(int numeroExpediente) {
+    public void setNumeroExpediente(String numeroExpediente) {
         this.numeroExpediente = numeroExpediente;
     }
-    public int getNumeroExpediente(){
+    public String getNumeroExpediente(){
         return numeroExpediente;
     }
 }

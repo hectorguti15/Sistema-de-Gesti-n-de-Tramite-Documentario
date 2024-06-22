@@ -94,7 +94,7 @@ public class LandingPage extends javax.swing.JFrame {
 
     private void IniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSesionActionPerformed
         dispose();
-        User userPage = new User();
+        UserLogin userPage = new UserLogin();
         userPage.setVisible(true);
     }//GEN-LAST:event_IniciarSesionActionPerformed
 
