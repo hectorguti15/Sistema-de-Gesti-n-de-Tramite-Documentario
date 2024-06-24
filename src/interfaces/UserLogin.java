@@ -6,6 +6,7 @@ package interfaces;
 
 import Enums.TipoIdentificacion;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import modelos.User;
 
 /**
@@ -230,18 +231,28 @@ public class UserLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_fieldDniUserActionPerformed
 
     private void iniciarSesionuSERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSesionuSERActionPerformed
-        String nombreValue = fieldNombreUser.getText();
-        String apellidoValue = fieldApellidoUser.getText();
-        String identificacion = (String) multipleChoiceUser.getSelectedItem();
-        String correoElectronicoValue = fieldEmailUser.getText();
-        String DNIUser = fieldDniUser.getText();
-      
-        User usuarioNuevo = new User(nombreValue, apellidoValue, correoElectronicoValue, TipoIdentificacion.fromStringToEnum(identificacion), DNIUser);
+        try {
+            String nombreValue = fieldNombreUser.getText();
+            String apellidoValue = fieldApellidoUser.getText();
+            String identificacion = (String) multipleChoiceUser.getSelectedItem();
+            String correoElectronicoValue = fieldEmailUser.getText();
+            String DNIUser = fieldDniUser.getText();
 
-        Servicio.UsersServicios.agregarUsuario(usuarioNuevo);
-        
-        UserExpediente userExpediente = new UserExpediente(correoElectronicoValue);
-        userExpediente.setVisible(true);
+            if (nombreValue.equals("") || apellidoValue.equals("") || identificacion.equals("") || correoElectronicoValue.equals("")) {
+                throw new IllegalArgumentException("Todos los campos son requeridos");
+            }
+            if (!Utils.Utils.esEmailValido(correoElectronicoValue)) {
+                throw new IllegalArgumentException("Correo electrónico no válido");
+            }
+            User usuarioNuevo = new User(nombreValue, apellidoValue, correoElectronicoValue, TipoIdentificacion.fromStringToEnum(identificacion), DNIUser);
+
+            Servicio.UsersServicios.agregarUsuario(usuarioNuevo);
+            dispose();
+            UserExpediente userExpediente = new UserExpediente(correoElectronicoValue, nombreValue);
+            userExpediente.setVisible(true);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_iniciarSesionuSERActionPerformed
 

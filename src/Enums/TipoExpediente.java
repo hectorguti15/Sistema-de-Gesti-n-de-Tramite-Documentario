@@ -3,7 +3,6 @@ package Enums;
 
 
 public enum TipoExpediente {
-    SOLICITUD,
     CERTIFICADO,
     CONSTANCIA,
     CARNET_UNIVERSITARIO,
@@ -14,9 +13,6 @@ public enum TipoExpediente {
 
     public static TipoExpediente fromStringToEnum(String text) {
         switch (text.toUpperCase()) {
-            case "SOLICITUD" -> {
-                return TipoExpediente.SOLICITUD;
-            }
             case "CERTIFICADO" -> {
                 return TipoExpediente.CERTIFICADO;
             }
@@ -45,9 +41,6 @@ public enum TipoExpediente {
 
     public static String fromEnumToString(TipoExpediente tipoExpediente) {
         switch (tipoExpediente) {
-            case SOLICITUD -> {
-                return "Solicitud";
-            }
             case CERTIFICADO -> {
                 return "Certificado";
             }

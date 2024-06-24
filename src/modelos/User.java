@@ -1,19 +1,21 @@
 package modelos;
 
 import Enums.TipoIdentificacion;
+import TDA.Colas;
 
 public class User extends Persona {
 
     //Si es trabajador ingresara su código ulima, sino su dni, y si es institución su RUC
     private TipoIdentificacion tipoIdentificacion;
     private String numeroIdentificacion;
-    private String numeroExpediente;
+    private Colas expedientes;
+    
 
-    public User( String nombre, String apellido, String correoElectronico, TipoIdentificacion tipoIdentificacion, String numeroIdentificacion) {
+    public User(String nombre, String apellido, String correoElectronico, TipoIdentificacion tipoIdentificacion, String numeroIdentificacion) {
         super(nombre, apellido, correoElectronico);
         this.tipoIdentificacion = tipoIdentificacion;
         this.numeroIdentificacion = numeroIdentificacion;
-        this.numeroExpediente = null;
+        this.expedientes = new Colas<Expediente>(1);
 
     }
 
@@ -33,12 +35,11 @@ public class User extends Persona {
         return numeroIdentificacion;
 
     }
-    public void setNumeroExpediente(String numeroExpediente) {
-        this.numeroExpediente = numeroExpediente;
+    public void agregarExpediente(Expediente expediente){
+        this.expedientes.encolar(expediente);
     }
-    public String getNumeroExpediente(){
-        return numeroExpediente;
+    public Colas getExpedientes(){
+        return expedientes;
     }
+
 }
-
-

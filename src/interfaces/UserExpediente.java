@@ -26,10 +26,12 @@ public class UserExpediente extends javax.swing.JFrame {
      * Creates new form UserExpediente
      */
     private String correoElectronico;
+    private String nombre;
 
-    public UserExpediente(String correoElectronico) {
+    public UserExpediente(String correoElectronico, String nombre) {
         initComponents();
         this.correoElectronico = correoElectronico;
+        this.nombre = nombre;
         DefaultComboBoxModel<String> comboBoxModel = new DefaultComboBoxModel<>();
 
         for (TipoExpediente tipo : TipoExpediente.values()) {
@@ -37,6 +39,7 @@ public class UserExpediente extends javax.swing.JFrame {
         }
 
         tipoExpediente.setModel(comboBoxModel);
+        nuevoExpediente.setText("Hola " + this.nombre + ", realiza tu solicitud");
     }
 
     /**
@@ -171,11 +174,16 @@ public class UserExpediente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void EnviarExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarExpedienteActionPerformed
-        // TODO add your handling code here:
+        realizarNuevoExpediente();
+        dispose();
+        UserMain userMain = new UserMain(this.correoElectronico);
+        userMain.setVisible(true);
     }//GEN-LAST:event_EnviarExpedienteActionPerformed
 
     private void enviarRealizarNuevoExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarRealizarNuevoExpedienteActionPerformed
-        // TODO add your handling code here:
+        realizarNuevoExpediente();
+        limpiarFormulario();
+
     }//GEN-LAST:event_enviarRealizarNuevoExpedienteActionPerformed
     java.io.File selectedFile = null;
     private void elegirArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_elegirArchivoActionPerformed
@@ -197,9 +205,6 @@ public class UserExpediente extends javax.swing.JFrame {
         String asuntoValue = jTextArea2.getText();
         int prioridadValue;
         switch (TipoExpediente.fromStringToEnum(tipoExpedienteValue)) {
-            case SOLICITUD:
-                prioridadValue = 1;
-                break;
             case CERTIFICADO:
                 prioridadValue = 2;
                 break;
@@ -231,6 +236,14 @@ public class UserExpediente extends javax.swing.JFrame {
         tiempoExpediente.setFechaInicial(LocalDateTime.now());
         Expediente nuevoExpediente = new Expediente(Utils.Utils.generarIdentificador(), prioridadValue, TipoExpediente.fromStringToEnum(tipoExpedienteValue), asuntoValue, foundUser, selectedFile, tiempoExpediente);
         Servicio.ExpedientesServicios.agregarExpediente(nuevoExpediente);
+        foundUser.agregarExpediente(nuevoExpediente);
+    }
+
+    private void limpiarFormulario() {
+        tipoExpediente.setSelectedIndex(0);
+        jTextArea2.setText("");
+        noDocumentoSeleccionado.setText("No documento seleccionado");
+        selectedFile = null;
     }
 
     /**
@@ -263,7 +276,7 @@ public class UserExpediente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserExpediente("default@example.com").setVisible(true);
+                new UserExpediente("default@example.com", "").setVisible(true);
             }
         });
     }

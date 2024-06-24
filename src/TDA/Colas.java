@@ -4,20 +4,24 @@ package TDA;
 import modelos.Expediente;
 
 
-public class Colas {
+public class Colas<T> {
 
-    private Expediente[] expedientes;
+    private T[] lista;
     private int front; // posicion del inicio
     private int back;  // posicion del final
     private int MAX_SIZE;
 
     public Colas(int MAX_SIZE) {
         this.MAX_SIZE = MAX_SIZE;
-        expedientes = new Expediente[MAX_SIZE];
+        this.lista = (T[]) new Object[MAX_SIZE]; 
         front = -1;
         back = -1;
     }
-
+    
+    public T[] obtenerLista(){
+        return lista;
+    }
+    
     public boolean estaVacia() {
         return front == -1 && back == -1;
     }
@@ -26,7 +30,7 @@ public class Colas {
         return (back + 1) == front || ((front == 0) && (back == MAX_SIZE - 1));
     }
 
-    public void encolar(Expediente item) {
+    public void encolar(T item) {
         if (!estaLlena()) {
             if (estaVacia()) {
                 front = 0;
@@ -36,13 +40,13 @@ public class Colas {
             } else {
                 back = 0;
             }
-            expedientes[back] = item;
+            lista[back] = item;
         }
     }
 
-    public Expediente desencolar() {
+    public T desencolar() {
         if (!estaVacia()) {
-            Expediente item = expedientes[front];
+            T item = lista[front];
             if (front == back) {
                 front = -1;
                 back = -1;
@@ -60,7 +64,7 @@ public class Colas {
 
     public void mostrarCola() {
         for (int i = 0; i < MAX_SIZE; i++) {
-            System.out.print(" | " + expedientes[i]);
+            System.out.print(" | " + lista[i]);
         }
         System.out.println("");
     }
