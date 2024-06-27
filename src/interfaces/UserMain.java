@@ -4,13 +4,21 @@
  */
 package interfaces;
 
+import Enums.TipoDependencia;
+import Enums.TipoEstado;
+import Enums.TipoExpediente;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.table.DefaultTableModel;
 import modelos.Expediente;
 import modelos.User;
 
@@ -28,7 +36,7 @@ public class UserMain extends javax.swing.JFrame {
     public UserMain(String correoElectronico) {
         this.correoElectronico = correoElectronico;
         initComponents();
-        addDynamicButtons();
+        completeTable();
     }
 
     public String getCorreoElectronico() {
@@ -44,12 +52,26 @@ public class UserMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jInternalFrame1 = new javax.swing.JInternalFrame();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+
+        jInternalFrame1.setVisible(true);
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 255));
@@ -57,22 +79,6 @@ public class UserMain extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Tus expedientes");
-
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 564, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 112, Short.MAX_VALUE)
-        );
-
-        jScrollPane1.setViewportView(jPanel1);
 
         jLabel2.setText("Selecciona uno sobre para ver tus expedientes");
 
@@ -102,26 +108,43 @@ public class UserMain extends javax.swing.JFrame {
             }
         });
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "N° expediente", "Solicitud", "Área actual", "Estado", "Tiempo inicio"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(297, 297, 297)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(40, Short.MAX_VALUE))
+                                .addContainerGap()
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(297, 297, 297)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 117, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,10 +156,10 @@ public class UserMain extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(41, 41, 41))
         );
 
         pack();
@@ -154,7 +177,8 @@ public class UserMain extends javax.swing.JFrame {
         UserExpediente userExpediente = new UserExpediente(usuarioEncontrado.getCorreoElectronico(), usuarioEncontrado.getNombre());
         userExpediente.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
-    private void addDynamicButtons() {
+
+    private void completeTable() {
         User usuarioEncontrado = Servicio.UsersServicios.obtenerUsuario(this.correoElectronico);
 
         Object[] expedientesObj = usuarioEncontrado.getExpedientes().obtenerLista();
@@ -163,44 +187,50 @@ public class UserMain extends javax.swing.JFrame {
             expedientes[i] = (Expediente) expedientesObj[i];
         }
 
-        int numberOfButtons = expedientesObj.length;
-        int horizontalGap = 10;
-        int verticalGap = 10;
- 
-        jPanel1.setLayout(new GridLayout(1, numberOfButtons, horizontalGap, verticalGap));
+        DefaultTableModel model = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{"N° expediente", "Solicitud", "Área actual", "Estado", "Tiempo inicio"}
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 
-        for (int i = 0; i < numberOfButtons; i++) {
-             JButton button = new JButton("Expediente " + expedientes[i].getNumeroExpediente());
-            button.setBackground(new Color(173, 216, 230));
-            button.setBorderPainted(false);
-            button.setFocusPainted(false);
-            button.setContentAreaFilled(false);
-            button.setOpaque(true);
-            button.setPreferredSize(new Dimension(200, 40));
-            button.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
+        jTable1.setModel(model); // Establece el modelo en la tabla
 
-  
-            button.setBorder(BorderFactory.createCompoundBorder(
-                    BorderFactory.createLineBorder(new Color(173, 216, 230), 1, true),
-                    BorderFactory.createEmptyBorder(5, 15, 5, 15)
-            ));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-            final int index = i;
+        System.out.println("RECORRERA" + expedientesObj.length);
+        for (int i = 0; i < expedientes.length; i++) {
+            if (expedientes[i] != null) {
+                System.out.println(expedientes[i].getNumeroExpediente() + TipoExpediente.fromEnumToString(expedientes[i].getTipoExpediente()));
+                LocalDateTime fechaInicial = expedientes[i].getTiempoExpediente().getFechaInicial();
+                Date fechaInicialDate = Date.from(fechaInicial.atZone(ZoneId.systemDefault()).toInstant());
 
-     
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    System.out.println("Botón " + index + " presionado");
-                }
-            });
-
-            jPanel1.add(button);
+                model.addRow(new Object[]{
+                    expedientes[i].getNumeroExpediente(),
+                    TipoExpediente.fromEnumToString(expedientes[i].getTipoExpediente()),
+                    TipoDependencia.fromEnumToString(expedientes[i].getTipoDependencia()),
+                    TipoEstado.fromEnumToString(expedientes[i].getEstado()),
+                    dateFormat.format(fechaInicialDate)
+                });
+            } else {
+                System.out.println("Expediente en posición " + i + " es null.");
+            }
         }
 
-        // Actualizar el panel para reflejar los cambios
-        jPanel1.revalidate();
-        jPanel1.repaint();
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = jTable1.rowAtPoint(evt.getPoint());
+                int column = jTable1.columnAtPoint(evt.getPoint());
+                if (row >= 0 && column >= 0) {
+                    Object value = jTable1.getValueAt(row, column);
+                    System.out.println("Fila: " + row + ", Columna: " + column + ", Valor: " + value);
+                }
+            }
+        });
 
     }
 
@@ -242,9 +272,10 @@ public class UserMain extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

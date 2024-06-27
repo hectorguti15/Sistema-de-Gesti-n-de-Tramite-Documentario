@@ -1,5 +1,7 @@
 package modelos;
 
+import Enums.TipoDependencia;
+import Enums.TipoEstado;
 import Enums.TipoExpediente;
 import java.io.File;
 
@@ -8,6 +10,8 @@ public class Expediente {
     private String numeroExpediente;
     private int prioridad;
     private TipoExpediente tipoExpediente;
+    private TipoDependencia tipoDependencia;
+    private TipoEstado estado;
     private User user;
     private String asunto;
     private File documentoReferencia;
@@ -18,6 +22,8 @@ public class Expediente {
         this.numeroExpediente = numeroExpediente;
         this.prioridad = prioridad;
         this.tipoExpediente = tipoExpediente;
+        this.tipoDependencia = TipoDependencia.POR_ASIGNAR;
+        this.estado = TipoEstado.ESPERA;
         this.user = user;
         this.asunto = asunto;
         this.documentoReferencia = documentoReferencia;
@@ -78,5 +84,21 @@ public class Expediente {
 
     public void setDocumentoReferencia(File documentoReferencia) {
         this.documentoReferencia = documentoReferencia;
+    }
+
+    public TipoDependencia getTipoDependencia() {
+        return tipoDependencia;
+    }
+
+    public void setTipoDependencia(TipoDependencia tipoDependencia) {
+        this.tipoDependencia = tipoDependencia;
+    }
+
+    public TipoEstado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(TipoEstado estado) {
+        this.estado = estado;
     }
 }

@@ -9,12 +9,13 @@ public class User extends Persona {
     private TipoIdentificacion tipoIdentificacion;
     private String numeroIdentificacion;
     private Colas expedientes;
-    
+ 
 
     public User(String nombre, String apellido, String correoElectronico, TipoIdentificacion tipoIdentificacion, String numeroIdentificacion) {
         super(nombre, apellido, correoElectronico);
         this.tipoIdentificacion = tipoIdentificacion;
         this.numeroIdentificacion = numeroIdentificacion;
+
         this.expedientes = new Colas<Expediente>(1);
 
     }
@@ -35,10 +36,17 @@ public class User extends Persona {
         return numeroIdentificacion;
 
     }
-    public void agregarExpediente(Expediente expediente){
-        this.expedientes.encolar(expediente);
+
+    public void agregarExpediente(Expediente expediente) {
+        if (expedientes.estaLlena()) {
+            expedientes.expandirCapacidad();
+        }
+
+        expedientes.encolar(expediente);
+
     }
-    public Colas getExpedientes(){
+
+    public Colas getExpedientes() {
         return expedientes;
     }
 

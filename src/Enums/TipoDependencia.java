@@ -1,81 +1,93 @@
 package Enums;
 
 public enum TipoDependencia {
-    SOLICITUD,
-    CERTIFICADO,
-    CONSTANCIA,
-    CARNET_UNIVERSITARIO,
-    LICENCIA,
-    RECLAMO,
-    AUTORIZACION,
-    ACTA,
-    HISTORIAL_ACADEMICO;
+    AREA_RECEPCION_DOCUMENTOS,
+    AREA_TRAMITE_DOCUMENTARIO,
+    AREA_REGISTROS_ACADEMICOS,
+    SECRETARIA_ACADEMICA,
+    OFICINA_SERVICIO_GENERALES,
+    SECRETARIA_ADMINISTRATIVA,
+    OFICINA_RECURSOS_HUMANOS,
+    UNIDAD_ATENCION_USUARIO,
+    OFICINA_QUEJAS,
+    SECRETARIA_GENERAL,
+    POR_ASIGNAR;
 
     public static TipoDependencia fromStringToEnum(String text) {
         switch (text.toUpperCase()) {
-            case "SOLICITUD" -> {
-                return TipoDependencia.SOLICITUD;
+            case "AREA RECEPCION DOCUMENTOS" -> {
+                return TipoDependencia.AREA_RECEPCION_DOCUMENTOS;
             }
-            case "CERTIFICADO" -> {
-                return TipoDependencia.CERTIFICADO;
+            case "AREA TRAMITE DOCUMENTARIO" -> {
+                return TipoDependencia.AREA_TRAMITE_DOCUMENTARIO;
             }
-            case "CONSTANCIA" -> {
-                return TipoDependencia.CONSTANCIA;
+            case "AREA REGISTROS ACADEMICOS" -> {
+                return TipoDependencia.AREA_REGISTROS_ACADEMICOS;
             }
-            case "CARNET UNIVERSITARIO" -> {
-                return TipoDependencia.CARNET_UNIVERSITARIO;
+            case "SECRETARIA ACADEMICA" -> {
+                return TipoDependencia.SECRETARIA_ACADEMICA;
             }
-            case "LICENCIA" -> {
-                return TipoDependencia.LICENCIA;
+            case "OFICINA SERVICIO GENERALES" -> {
+                return TipoDependencia.OFICINA_SERVICIO_GENERALES;
             }
-            case "RECLAMO" -> {
-                return TipoDependencia.RECLAMO;
+            case "SECRETARIA ADMINISTRATIVA" -> {
+                return TipoDependencia.SECRETARIA_ADMINISTRATIVA;
             }
-            case "AUTORIZACION" -> {
-                return TipoDependencia.AUTORIZACION;
+            case "OFICINA RECURSOS HUMANOS" -> {
+                return TipoDependencia.OFICINA_RECURSOS_HUMANOS;
             }
-            case "ACTA" -> {
-                return TipoDependencia.ACTA;
+            case "UNIDAD ATENCION USUARIO" -> {
+                return TipoDependencia.UNIDAD_ATENCION_USUARIO;
             }
-            case "HISTORIAL ACADEMICO" -> {
-                return TipoDependencia.HISTORIAL_ACADEMICO;
+            case "OFICINA QUEJAS" -> {
+                return TipoDependencia.OFICINA_QUEJAS;
             }
-            default ->
-                throw new IllegalArgumentException("Tipo de dependencia no reconocido: " + text);
+            case "SECRETARIA GENERAL" -> {
+                return TipoDependencia.SECRETARIA_GENERAL;
+            }
+            case "POR ASIGNAR" -> {
+                return TipoDependencia.POR_ASIGNAR;
+            }
+            default -> throw new IllegalArgumentException("Tipo de dependencia no reconocido: " + text);
         }
     }
 
     public static String fromEnumToString(TipoDependencia tipoDependencia) {
         switch (tipoDependencia) {
-            case SOLICITUD -> {
-                return "Solicitud";
+            case AREA_RECEPCION_DOCUMENTOS -> {
+                return "Area Recepcion Documentos";
             }
-            case CERTIFICADO -> {
-                return "Certificado";
+            case AREA_TRAMITE_DOCUMENTARIO -> {
+                return "Area Tramite Documentario";
             }
-            case CONSTANCIA -> {
-                return "Constancia";
+            case AREA_REGISTROS_ACADEMICOS -> {
+                return "Area Registros Academicos";
             }
-            case CARNET_UNIVERSITARIO -> {
-                return "Carnet Universitario";
+            case SECRETARIA_ACADEMICA -> {
+                return "Secretaria Academica";
             }
-            case LICENCIA -> {
-                return "Licencia";
+            case OFICINA_SERVICIO_GENERALES -> {
+                return "Oficina Servicio Generales";
             }
-            case RECLAMO -> {
-                return "Reclamo";
+            case SECRETARIA_ADMINISTRATIVA -> {
+                return "Secretaria Administrativa";
             }
-            case AUTORIZACION -> {
-                return "Autorizacion";
+            case OFICINA_RECURSOS_HUMANOS -> {
+                return "Oficina Recursos Humanos";
             }
-            case ACTA -> {
-                return "Acta";
+            case UNIDAD_ATENCION_USUARIO -> {
+                return "Unidad Atencion Usuario";
             }
-            case HISTORIAL_ACADEMICO -> {
-                return "Historial Academico";
+            case OFICINA_QUEJAS -> {
+                return "Oficina Quejas";
             }
-            default ->
-                throw new IllegalArgumentException("Tipo de dependencia no reconocido: " + tipoDependencia);
+            case SECRETARIA_GENERAL -> {
+                return "Secretaria General";
+            }
+            case POR_ASIGNAR -> {
+                return "Por asignar";
+            }
+            default -> throw new IllegalArgumentException("Tipo de dependencia no reconocido: " + tipoDependencia);
         }
     }
 }
