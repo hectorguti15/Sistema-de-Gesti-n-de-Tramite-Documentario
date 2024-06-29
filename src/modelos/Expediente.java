@@ -16,8 +16,7 @@ public class Expediente {
     private String asunto;
     private File documentoReferencia;
     private TiempoExpediente tiempoExpediente;
-    
-    
+
     public Expediente(String numeroExpediente, int prioridad, TipoExpediente tipoExpediente, String asunto, User user, File documentoReferencia, TiempoExpediente tiempoExpediente) {
         this.numeroExpediente = numeroExpediente;
         this.prioridad = prioridad;
@@ -28,6 +27,10 @@ public class Expediente {
         this.asunto = asunto;
         this.documentoReferencia = documentoReferencia;
         this.tiempoExpediente = tiempoExpediente;
+    }
+
+    public Expediente() {
+        throw new UnsupportedOperationException("No inicializado");
     }
 
     public void setNumeroExpediente(String numeroExpediente) {

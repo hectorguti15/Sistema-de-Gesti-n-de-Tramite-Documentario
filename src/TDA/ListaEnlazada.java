@@ -57,7 +57,6 @@ public class ListaEnlazada<T> {
         }
         anterior.setNext(ptr.getNext());
     }
-   
 
     public T buscar(T valor) {
         Nodo<T> ptr = this.L;
@@ -70,8 +69,19 @@ public class ListaEnlazada<T> {
             return ptr.getValue();
         }
     }
-    
-    public Nodo<T> obtenerPrimero(){
+
+    public int getLength() {
+        Nodo<T> ptr = this.L;
+        int numberLength = 0;
+        while (ptr != null) {
+            System.out.println("Se suma unoooo");
+            numberLength += 1;
+            ptr = ptr.getNext();
+        }
+        return numberLength;
+    }
+
+    public Nodo<T> obtenerPrimero() {
         return L;
     }
 

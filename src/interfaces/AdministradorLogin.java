@@ -199,7 +199,7 @@ public class AdministradorLogin extends javax.swing.JFrame {
                 throw new IllegalArgumentException("Este ingreso es solo para administradores");
             }
             dispose();
-            Administrador administradorPage = new Administrador();
+            ExpedienteAdministrador administradorPage = new ExpedienteAdministrador();
             administradorPage.setVisible(true);
             
 

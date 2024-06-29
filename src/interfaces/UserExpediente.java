@@ -234,9 +234,9 @@ public class UserExpediente extends javax.swing.JFrame {
         User foundUser = Servicio.UsersServicios.obtenerUsuario(this.correoElectronico);
         TiempoExpediente tiempoExpediente = new TiempoExpediente();
         tiempoExpediente.setFechaInicial(LocalDateTime.now());
-        Expediente nuevoExpediente = new Expediente(Utils.Utils.generarIdentificador(), prioridadValue, TipoExpediente.fromStringToEnum(tipoExpedienteValue), asuntoValue, foundUser, selectedFile, tiempoExpediente);
-        Servicio.ExpedientesServicios.agregarExpediente(nuevoExpediente);
-        foundUser.agregarExpediente(nuevoExpediente);
+        Expediente expedienteNuevo = new Expediente(Utils.Utils.generarIdentificador(), prioridadValue, TipoExpediente.fromStringToEnum(tipoExpedienteValue), asuntoValue, foundUser, selectedFile, tiempoExpediente);
+        Servicio.ExpedientesServicios.agregarExpediente(expedienteNuevo);
+        foundUser.agregarExpediente(expedienteNuevo);
     }
 
     private void limpiarFormulario() {
