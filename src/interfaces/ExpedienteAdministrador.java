@@ -46,6 +46,7 @@ public class ExpedienteAdministrador extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableTodosExpedientes = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,6 +103,18 @@ public class ExpedienteAdministrador extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tableTodosExpedientes);
 
+        jButton1.setBackground(new java.awt.Color(51, 51, 51));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Salir");
+        jButton1.setBorder(null);
+        jButton1.setFocusPainted(false);
+        jButton1.setFocusable(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,34 +122,48 @@ public class ExpedienteAdministrador extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        dispose();
+        LandingPage main = new LandingPage();
+        main.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
     private void addExpediente() {
         Expediente[] expedientes = Servicio.ExpedientesServicios.getExpedientes();
-     
+
         DefaultTableModel model = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{"N° expediente", "User", "Tipo expediente ", "Prioridad", "Área actual", "Estado", "Tiempo inicio"}
@@ -171,24 +198,11 @@ public class ExpedienteAdministrador extends javax.swing.JFrame {
             }
         }
 
-        tableTodosExpedientes.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                int row = tableTodosExpedientes.rowAtPoint(evt.getPoint());
-                int column = tableTodosExpedientes.columnAtPoint(evt.getPoint());
-                if (row >= 0 && column >= 0) {
-                    ExpedienteInfo expedienteUser = new ExpedienteInfo(expedientes[row]);
-                    expedienteUser.setVisible(true);
-
-                }
-            }
-        });
     }
 
     private void addExpedientesAsignar() {
         Expediente[] expedientes = Servicio.ExpedientesServicios.getExpedientesAsignar();
-        
-        
+
         DefaultTableModel model = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{"User", "Tipo expediente ", "Prioridad", "Tiempo inicio"}
@@ -226,8 +240,14 @@ public class ExpedienteAdministrador extends javax.swing.JFrame {
                 int row = expedientesAsignarTable.rowAtPoint(evt.getPoint());
                 int column = expedientesAsignarTable.columnAtPoint(evt.getPoint());
                 if (row >= 0 && column >= 0) {
-                    ExpedienteInfo expedienteUser = new ExpedienteInfo(expedientes[row]);
-                    expedienteUser.setVisible(true);
+                    System.out.println("EXPEDIENTE AND CALLBACK");
+                     System.out.println("edit");
+                    AsignarAreaExpediente asignarAreaExpediente = new AsignarAreaExpediente(expedientes[row], () -> {
+                        addExpedientesAsignar();
+                       
+                        addExpediente();
+                    });
+                    asignarAreaExpediente.setVisible(true);
 
                 }
             }
@@ -271,6 +291,7 @@ public class ExpedienteAdministrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable expedientesAsignarTable;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

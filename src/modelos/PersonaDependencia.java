@@ -20,7 +20,5 @@ public class PersonaDependencia extends Persona {
         return numeroTrabajador;
     }
     
-    public void registrarIngresoDependencia(){
-        
-    }
+   
 }

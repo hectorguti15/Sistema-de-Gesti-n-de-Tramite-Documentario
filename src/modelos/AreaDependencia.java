@@ -11,7 +11,7 @@ public class AreaDependencia {
     public AreaDependencia(String area, PersonaDependencia[] personalDependencia) {
         this.area = area;
         this.personalDependencia = new PersonaDependencia[1];
-        this.contadorPersonas = 1;
+        this.contadorPersonas = 0;
     }
 
     public String getArea() {
@@ -31,11 +31,12 @@ public class AreaDependencia {
     }
 
     public void agregarPersona(PersonaDependencia persona) {
+        System.out.println("Length ");
         if (contadorPersonas == personalDependencia.length) {
-            personalDependencia = Arrays.copyOf(personalDependencia, personalDependencia.length + 1);
+            
+            this.personalDependencia = Arrays.copyOf(personalDependencia, personalDependencia.length + 1);
+            System.out.println("Length se suma" + personalDependencia.length);
         }
-
-        // Agregar la persona al arreglo
         personalDependencia[contadorPersonas] = persona;
         contadorPersonas++;
     }

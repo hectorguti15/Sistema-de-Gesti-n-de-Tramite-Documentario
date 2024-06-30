@@ -6,17 +6,18 @@ package interfaces;
 
 import Utils.Utils;
 import javax.swing.JOptionPane;
+import modelos.PersonaDependencia;
 
 /**
  *
  * @author hecto
  */
-public class AdministradorLogin extends javax.swing.JFrame {
+public class PersonalLogin extends javax.swing.JFrame {
 
     /**
      * Creates new form Administrador
      */
-    public AdministradorLogin() {
+    public PersonalLogin() {
         initComponents();
     }
 
@@ -39,12 +40,14 @@ public class AdministradorLogin extends javax.swing.JFrame {
         email = new javax.swing.JLabel();
         fieldEmail = new javax.swing.JTextField();
         iniciarSesion = new javax.swing.JButton();
+        email1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         iniciarSesionAdministrador.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         iniciarSesionAdministrador.setForeground(new java.awt.Color(102, 102, 102));
-        iniciarSesionAdministrador.setText("Iniciar sesión como administrador");
+        iniciarSesionAdministrador.setText("Iniciar sesión como personal");
 
         nombre.setText("Nombre");
 
@@ -58,7 +61,7 @@ public class AdministradorLogin extends javax.swing.JFrame {
             }
         });
 
-        nAdministrador.setText("N° administrador");
+        nAdministrador.setText("N° trabajdor");
 
         apellidoField.setForeground(new java.awt.Color(102, 102, 102));
         apellidoField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -104,15 +107,27 @@ public class AdministradorLogin extends javax.swing.JFrame {
             }
         });
 
+        email1.setText("¿Eres administrador?");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si", "No" }));
+        jComboBox1.setBorder(null);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(139, Short.MAX_VALUE)
+                .addContainerGap(164, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(iniciarSesionAdministrador)
+                        .addGap(141, 141, 141))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(email1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(apellido)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -129,18 +144,15 @@ public class AdministradorLogin extends javax.swing.JFrame {
                                 .addComponent(email)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(fieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(iniciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(124, 124, 124))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(iniciarSesionAdministrador)
-                        .addGap(134, 134, 134))))
+                            .addComponent(iniciarSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(125, 125, 125))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(34, 34, 34)
                 .addComponent(iniciarSesionAdministrador)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nAdministrador))
@@ -156,9 +168,13 @@ public class AdministradorLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(email))
-                .addGap(26, 26, 26)
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(email1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(iniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -179,35 +195,49 @@ public class AdministradorLogin extends javax.swing.JFrame {
     private void iniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSesionActionPerformed
         String nombreValue = nombreField.getText();
         String apellidoValue = apellidoField.getText();
-        String nAdministradorValue = fieldAdministrador.getText();
+        String nTrabajadorValue = fieldAdministrador.getText();
         String correoElectronicoValue = fieldEmail.getText();
-  
 
-        if("".equals(nombreValue) || "".equals(apellidoValue) || "".equals(nAdministradorValue) || "".equals(correoElectronicoValue)){
-             JOptionPane.showMessageDialog(this, "Todos los campos son requeridos", "Error", JOptionPane.ERROR_MESSAGE);
+        if ("".equals(nombreValue) || "".equals(apellidoValue) || "".equals(nTrabajadorValue) || "".equals(correoElectronicoValue)) {
+            JOptionPane.showMessageDialog(this, "Todos los campos son requeridos", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        try{
-            if(!Utils.esEmailValido(correoElectronicoValue)){
+        try {
+            if (!Utils.esEmailValido(correoElectronicoValue)) {
                 System.out.println("Error lanzado");
-               throw new IllegalArgumentException("Correo electrónico no válido");
+                throw new IllegalArgumentException("Correo electrónico no válido");
             }
-           
-            //Verificar match entre codigo de administrador y correoElectornico
-            //correto: "mlopez@gmail.com" "EDF173KZ"
-            if(!Servicio.AdministradorServicio.administrador.esAdministrador(correoElectronicoValue, nAdministradorValue)){
-            
-                throw new IllegalArgumentException("Este ingreso es solo para administradores");
-            }
-            dispose();
-            ExpedienteAdministrador administradorPage = new ExpedienteAdministrador();
-            administradorPage.setVisible(true);
-            
 
+            if ("Si".equals((String) jComboBox1.getSelectedItem())) {
+                //Verificar match entre codigo de administrador y correoElectornico
+                //correto: "mlopez@gmail.com" "EDF173KZ"
+                if (!Servicio.AdministradorServicio.administrador.esAdministrador(correoElectronicoValue, nTrabajadorValue)) {
+
+                    throw new IllegalArgumentException("Este ingreso es solo para administradores");
+                }
+                dispose();
+                ExpedienteAdministrador administradorPage = new ExpedienteAdministrador();
+                administradorPage.setVisible(true);
+            } else {
+                boolean esTrabajador = false;
+
+                for (PersonaDependencia personalDependencia : Servicio.AdministradorServicio.administrador.getPersonalDependencia()) {
+                    System.out.println(personalDependencia.getNombre() + personalDependencia.getNumeroTrabajador());
+                    System.out.println("EMAIL: " + correoElectronicoValue + "  ID: " + nTrabajadorValue);
+                    if (correoElectronicoValue.equals(personalDependencia.getCorreoElectronico()) && nTrabajadorValue.equals(personalDependencia.getNumeroTrabajador())) {
+                        System.out.println("TRUEEE");
+                        esTrabajador = true;
+                    }
+                }
+                if (!esTrabajador) {
+                    throw new IllegalArgumentException("Este ingreso es solo para trabajadores");
+                }
+                //Añadir logica para personal de dependencia
+            }
+
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        catch(IllegalArgumentException e){
-             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-               // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_iniciarSesionActionPerformed
 
     private void fieldAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldAdministradorActionPerformed
@@ -231,21 +261,23 @@ public class AdministradorLogin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdministradorLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PersonalLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdministradorLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PersonalLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdministradorLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PersonalLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdministradorLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PersonalLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdministradorLogin().setVisible(true);
+                new PersonalLogin().setVisible(true);
 
             }
         });
@@ -255,10 +287,12 @@ public class AdministradorLogin extends javax.swing.JFrame {
     private javax.swing.JLabel apellido;
     private javax.swing.JTextField apellidoField;
     private javax.swing.JLabel email;
+    private javax.swing.JLabel email1;
     private javax.swing.JTextField fieldAdministrador;
     private javax.swing.JTextField fieldEmail;
     private javax.swing.JButton iniciarSesion;
     private javax.swing.JLabel iniciarSesionAdministrador;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel nAdministrador;
     private javax.swing.JLabel nombre;
     private javax.swing.JTextField nombreField;

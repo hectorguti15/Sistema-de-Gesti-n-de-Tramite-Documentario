@@ -3,6 +3,7 @@ package modelos;
 import Enums.TipoDependencia;
 import Enums.TipoEstado;
 import Enums.TipoExpediente;
+import TDA.Colas;
 import java.io.File;
 
 public class Expediente {
@@ -16,6 +17,7 @@ public class Expediente {
     private String asunto;
     private File documentoReferencia;
     private TiempoExpediente tiempoExpediente;
+    private Colas areas;
 
     public Expediente(String numeroExpediente, int prioridad, TipoExpediente tipoExpediente, String asunto, User user, File documentoReferencia, TiempoExpediente tiempoExpediente) {
         this.numeroExpediente = numeroExpediente;
@@ -25,6 +27,7 @@ public class Expediente {
         this.estado = TipoEstado.ESPERA;
         this.user = user;
         this.asunto = asunto;
+        this.areas = new Colas<TipoDependencia>(2);
         this.documentoReferencia = documentoReferencia;
         this.tiempoExpediente = tiempoExpediente;
     }
@@ -104,4 +107,13 @@ public class Expediente {
     public void setEstado(TipoEstado estado) {
         this.estado = estado;
     }
+
+    public Colas getAreas() {
+        return areas;
+    }
+
+    public void setAreas(Colas areas) {
+        this.areas = areas;
+    }
+    
 }

@@ -89,5 +89,9 @@ public class Colas<T> {
         }
         System.out.println("");
     }
+    
+    public T obtenerPrimero(){
+        return this.lista[0];
+    }
 
 }
