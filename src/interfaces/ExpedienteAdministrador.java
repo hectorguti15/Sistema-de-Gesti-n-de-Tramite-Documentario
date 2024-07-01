@@ -176,7 +176,8 @@ public class ExpedienteAdministrador extends javax.swing.JFrame {
 
         tableTodosExpedientes.setModel(model);
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
 
         for (int i = 0; i < expedientes.length; i++) {
             if (expedientes[i] != null) {
@@ -201,7 +202,8 @@ public class ExpedienteAdministrador extends javax.swing.JFrame {
     }
 
     private void addExpedientesAsignar() {
-        Expediente[] expedientes = Servicio.ExpedientesServicios.getExpedientesAsignar();
+        System.out.println("Añadir expediente");
+        Expediente[] expedientes = Servicio.ExpedientesServicios.getExpedientesArea(TipoDependencia.POR_ASIGNAR);
 
         DefaultTableModel model = new DefaultTableModel(
                 new Object[][]{},
@@ -215,7 +217,8 @@ public class ExpedienteAdministrador extends javax.swing.JFrame {
 
         expedientesAsignarTable.setModel(model);
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
 
         for (int i = 0; i < expedientes.length; i++) {
             if (expedientes[i] != null) {

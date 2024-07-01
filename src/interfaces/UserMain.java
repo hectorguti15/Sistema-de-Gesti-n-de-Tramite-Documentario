@@ -200,7 +200,8 @@ public class UserMain extends javax.swing.JFrame {
 
         jTable1.setModel(model); // Establece el modelo en la tabla
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
 
         System.out.println("RECORRERA" + expedientesObj.length);
         for (int i = 0; i < expedientes.length; i++) {

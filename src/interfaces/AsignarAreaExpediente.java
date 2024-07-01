@@ -45,7 +45,6 @@ public class AsignarAreaExpediente extends javax.swing.JFrame {
         usuario.setText("Usuario: " + this.expediente.getUser().getNombre());
         documentoReferencia.setText(this.expediente.getDocumentoReferencia() == null ? "No documento ingresado" : this.expediente.getDocumentoReferencia().getName());
 
-        // Add a window listener to call the callback when the window is closed
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -79,7 +78,8 @@ public class AsignarAreaExpediente extends javax.swing.JFrame {
 
         tableAsignar.setModel(model);
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
 
         LocalDateTime fechaInicial = expediente.getTiempoExpediente().getFechaInicial();
         Date fechaInicialDate = Date.from(fechaInicial.atZone(ZoneId.systemDefault()).toInstant());

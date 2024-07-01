@@ -31,12 +31,12 @@ public class ExpedientesServicios {
         return expedientesObtenidos;
     }
 
-    public static Expediente[] getExpedientesAsignar() {
+    public static Expediente[] getExpedientesArea(TipoDependencia tipDependencia) {
         int count = 0;
         Nodo ptr = listaExpedientes.obtenerPrimero();
         while (ptr != null) {
             Expediente expediente = (Expediente) ptr.getValue();
-            if (expediente.getTipoDependencia() == TipoDependencia.POR_ASIGNAR) {
+            if (expediente.getTipoDependencia() == tipDependencia) {
                 count++;
             }
             ptr = ptr.getNext();
@@ -46,7 +46,7 @@ public class ExpedientesServicios {
         ptr = listaExpedientes.obtenerPrimero();
         while (ptr != null) {
             Expediente expediente = (Expediente) ptr.getValue();
-            if (expediente.getTipoDependencia() == TipoDependencia.POR_ASIGNAR) {
+            if (expediente.getTipoDependencia() == tipDependencia) {
                 expedientesAsignar[index] = expediente;
                 index++;
             }

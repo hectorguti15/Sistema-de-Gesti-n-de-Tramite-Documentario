@@ -218,20 +218,25 @@ public class PersonalLogin extends javax.swing.JFrame {
                 ExpedienteAdministrador administradorPage = new ExpedienteAdministrador();
                 administradorPage.setVisible(true);
             } else {
-                boolean esTrabajador = false;
+                PersonaDependencia trabajador = null;
 
                 for (PersonaDependencia personalDependencia : Servicio.AdministradorServicio.administrador.getPersonalDependencia()) {
                     System.out.println(personalDependencia.getNombre() + personalDependencia.getNumeroTrabajador());
                     System.out.println("EMAIL: " + correoElectronicoValue + "  ID: " + nTrabajadorValue);
                     if (correoElectronicoValue.equals(personalDependencia.getCorreoElectronico()) && nTrabajadorValue.equals(personalDependencia.getNumeroTrabajador())) {
                         System.out.println("TRUEEE");
-                        esTrabajador = true;
+                        trabajador = personalDependencia;
                     }
                 }
-                if (!esTrabajador) {
+                if (trabajador == null) {
                     throw new IllegalArgumentException("Este ingreso es solo para trabajadores");
                 }
+                
                 //Añadir logica para personal de dependencia
+                dispose();
+                System.out.println("PERSONAL MAIN");
+                PersonalMain personalMain = new PersonalMain(trabajador);
+                personalMain.setVisible(true);
             }
 
         } catch (IllegalArgumentException e) {

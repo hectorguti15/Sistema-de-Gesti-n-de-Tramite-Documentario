@@ -24,9 +24,7 @@ public class Administrador extends Persona {
     }
 
     public PersonaDependencia[] getPersonalDependencia() {
-        for (int i = 0; i < 10; i++) {
-            System.out.println("PERSONAL" + this.personalDependencia[i]);
-        }
+        
         return personalDependencia;
     }
 

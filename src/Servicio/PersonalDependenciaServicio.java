@@ -1,5 +1,6 @@
 package Servicio;
 
+import Enums.TipoDependencia;
 import modelos.PersonaDependencia;
 
 public class PersonalDependenciaServicio {
@@ -20,37 +21,37 @@ public class PersonalDependenciaServicio {
 
     static {
         // Área Recepcion de documentos
-        personaRecepcion1 = new PersonaDependencia("Juan", "Perez", "juanperez@gmail.com", "JPK123TZ");
-        personaRecepcion2 = new PersonaDependencia("Ana", "Gomez", "anagomez@gmail.com", "AGK123TZ");
+        personaRecepcion1 = new PersonaDependencia("Juan", "Perez", "juanperez@gmail.com", "JPK123TZ", TipoDependencia.AREA_RECEPCION_DOCUMENTOS);
+        personaRecepcion2 = new PersonaDependencia("Ana", "Gomez", "anagomez@gmail.com", "AGK123TZ", TipoDependencia.AREA_RECEPCION_DOCUMENTOS);
 
         // Área Trámite Documentario
-        personaTramite1 = new PersonaDependencia("Carlos", "Ramirez", "carlosramirez@gmail.com", "CR123TZ");
+        personaTramite1 = new PersonaDependencia("Carlos", "Ramirez", "carlosramirez@gmail.com", "CR123TZ", TipoDependencia.AREA_TRAMITE_DOCUMENTARIO);
 
         // Área Registros Académicos
-        personaRegistros1 = new PersonaDependencia("Maroa", "Lopez", "marialopez@gmail.com", "MPK123TZ");
-        personaRegistros2 = new PersonaDependencia("Pedro", "Martinez", "pedromartinez@gmail.com", "PMK123TZ");
+        personaRegistros1 = new PersonaDependencia("Maroa", "Lopez", "marialopez@gmail.com", "MPK123TZ", TipoDependencia.AREA_REGISTROS_ACADEMICOS);
+        personaRegistros2 = new PersonaDependencia("Pedro", "Martinez", "pedromartinez@gmail.com", "PMK123TZ", TipoDependencia.AREA_REGISTROS_ACADEMICOS);
 
         // Área Secretaría Académica
-        personaSecretariaAcademica1 = new PersonaDependencia("Laura", "Hernandez", "laurahernandez@gmail.com", "LHK123TZ");
+        personaSecretariaAcademica1 = new PersonaDependencia("Laura", "Hernandez", "laurahernandez@gmail.com", "LHK123TZ", TipoDependencia.SECRETARIA_ACADEMICA);
 
         // Área Oficina de Servicios Generales
-        personaServiciosGenerales1 = new PersonaDependencia("Luis", "Sanchez", "luissanchez@gmail.com", "LSK123TZ");
+        personaServiciosGenerales1 = new PersonaDependencia("Luis", "Sanchez", "luissanchez@gmail.com", "LSK123TZ", TipoDependencia.OFICINA_SERVICIO_GENERALES);
 
         // Área Secretaría Administrativa
-        personaSecretariaAdmin1 = new PersonaDependencia("Ana", "Torres", "anatorres@gmail.com", "ATK123TZ");
+        personaSecretariaAdmin1 = new PersonaDependencia("Ana", "Torres", "anatorres@gmail.com", "ATK123TZ", TipoDependencia.SECRETARIA_ADMINISTRATIVA);
 
         // Área Oficina de Recursos Humanos
-        personaRecursosHumanos1 = new PersonaDependencia("Jorge", "Diaz", "jorgediaz@gmail.com", "JDK123TZ");
-        personaRecursosHumanos2 = new PersonaDependencia("Elena", "Ruiz", "elenaruiz@gmail.com", "ERK123TZ");
+        personaRecursosHumanos1 = new PersonaDependencia("Jorge", "Diaz", "jorgediaz@gmail.com", "JDK123TZ", TipoDependencia.OFICINA_RECURSOS_HUMANOS);
+        personaRecursosHumanos2 = new PersonaDependencia("Elena", "Ruiz", "elenaruiz@gmail.com", "ERK123TZ", TipoDependencia.OFICINA_RECURSOS_HUMANOS);
 
         // Área Unidad de Atención al Usuario
-        personaAtencionUsuario1 = new PersonaDependencia("Sofia", "Vargas", "sofiavargas@gmail.com", "SVK123TZ");
+        personaAtencionUsuario1 = new PersonaDependencia("Sofia", "Vargas", "sofiavargas@gmail.com", "SVK123TZ", TipoDependencia.UNIDAD_ATENCION_USUARIO);
 
         // Área Oficina de Quejas
-        personaQuejas1 = new PersonaDependencia("Pablo", "Ortega", "pabloortega@gmail.com", "POK123TZ");
+        personaQuejas1 = new PersonaDependencia("Pablo", "Ortega", "pabloortega@gmail.com", "POK123TZ", TipoDependencia.OFICINA_QUEJAS);
 
         // Área Secretaría General
-        personaSecretariaGeneral1 = new PersonaDependencia("Carmen", "Mendoza", "carmenmendoza@gmail.com", "CMK123TZ");
+        personaSecretariaGeneral1 = new PersonaDependencia("Carmen", "Mendoza", "carmenmendoza@gmail.com", "CMK123TZ", TipoDependencia.SECRETARIA_GENERAL);
     }
 
     public static void configurarPersonalPorArea() {
