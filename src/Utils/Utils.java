@@ -1,10 +1,14 @@
 package Utils;
 
+import java.awt.Image;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class Utils {
 
@@ -27,5 +31,11 @@ public class Utils {
         }
 
         return sb.toString();
+    }
+    public static void Setimage(JLabel label, String root) {
+        ImageIcon image = new ImageIcon(root);
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
+        label.setIcon(icon);
+        
     }
 }

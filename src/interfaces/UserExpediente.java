@@ -4,6 +4,7 @@
  */
 package interfaces;
 
+import Enums.TipoDependencia;
 import Enums.TipoExpediente;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -25,21 +26,34 @@ public class UserExpediente extends javax.swing.JFrame {
     /**
      * Creates new form UserExpediente
      */
-    private String correoElectronico;
-    private String nombre;
+    private TipoDependencia dependencia;
 
-    public UserExpediente(String correoElectronico, String nombre) {
+    public UserExpediente(TipoDependencia dependencia) {
         initComponents();
-        this.correoElectronico = correoElectronico;
-        this.nombre = nombre;
+        this.dependencia = dependencia;
+        setLocation(280, 50);
+        this.setLocationRelativeTo(this);
         DefaultComboBoxModel<String> comboBoxModel = new DefaultComboBoxModel<>();
 
         for (TipoExpediente tipo : TipoExpediente.values()) {
             comboBoxModel.addElement(TipoExpediente.fromEnumToString(tipo));
         }
 
-        tipoExpediente.setModel(comboBoxModel);
-        nuevoExpediente.setText("Hola " + this.nombre + ", realiza tu solicitud");
+        tipoExpediente1.setModel(comboBoxModel);
+
+        DefaultComboBoxModel<String> comboBoxModel2 = new DefaultComboBoxModel<>();
+
+        if (Servicio.UsersServicios.userCount > 0) {
+            User[] usuarios = Servicio.UsersServicios.users;
+            for (User user : usuarios) {
+                comboBoxModel2.addElement(user.getCorreoElectronico());
+            }
+
+            User foundUser = Servicio.UsersServicios.users[Servicio.UsersServicios.users.length - 1];
+            jCheckBox1.setText("Ultimo usuario creado (" + foundUser.getCorreoElectronico() + ")");
+        }
+        usuariosModel.setModel(comboBoxModel2);
+
     }
 
     /**
@@ -52,57 +66,43 @@ public class UserExpediente extends javax.swing.JFrame {
     private void initComponents() {
 
         jFileChooser1 = new javax.swing.JFileChooser();
+        jPanel2 = new javax.swing.JPanel();
         nuevoExpediente = new javax.swing.JLabel();
-        tipoExpediente = new javax.swing.JComboBox<>();
+        usuariosModel = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        EnviarExpediente = new javax.swing.JButton();
-        enviarRealizarNuevoExpediente = new javax.swing.JButton();
-        noDocumentoSeleccionado = new javax.swing.JLabel();
-        elegirArchivo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
+        noDocumentoSeleccionado = new javax.swing.JLabel();
+        elegirArchivo = new javax.swing.JButton();
+        enviarRealizarNuevoExpediente = new javax.swing.JButton();
+        EnviarExpediente = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        tipoExpediente1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        nuevoExpediente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        nuevoExpediente.setForeground(new java.awt.Color(102, 102, 102));
-        nuevoExpediente.setText("Nuevo Expediente");
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        tipoExpediente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        nuevoExpediente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        nuevoExpediente.setForeground(new java.awt.Color(255, 102, 0));
+        nuevoExpediente.setText("Realizar nuevo expediente");
+
+        usuariosModel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel2.setText("¿Cual es su solicitud?");
 
         jLabel3.setText("Asunto");
 
-        EnviarExpediente.setBackground(new java.awt.Color(51, 51, 51));
-        EnviarExpediente.setForeground(new java.awt.Color(255, 255, 255));
-        EnviarExpediente.setText("Enviar expediente");
-        EnviarExpediente.setBorder(null);
-        EnviarExpediente.setDefaultCapable(false);
-        EnviarExpediente.setFocusPainted(false);
-        EnviarExpediente.setFocusable(false);
-        EnviarExpediente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EnviarExpedienteActionPerformed(evt);
-            }
-        });
-
-        enviarRealizarNuevoExpediente.setBackground(new java.awt.Color(204, 204, 204));
-        enviarRealizarNuevoExpediente.setText("Enviar y hacer otra solicitud");
-        enviarRealizarNuevoExpediente.setBorder(null);
-        enviarRealizarNuevoExpediente.setBorderPainted(false);
-        enviarRealizarNuevoExpediente.setDefaultCapable(false);
-        enviarRealizarNuevoExpediente.setFocusPainted(false);
-        enviarRealizarNuevoExpediente.setFocusable(false);
-        enviarRealizarNuevoExpediente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enviarRealizarNuevoExpedienteActionPerformed(evt);
-            }
-        });
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane1.setViewportView(jTextArea2);
 
         noDocumentoSeleccionado.setText("No documento seleccionado");
 
+        elegirArchivo.setBackground(new java.awt.Color(255, 102, 0));
+        elegirArchivo.setForeground(new java.awt.Color(255, 255, 255));
         elegirArchivo.setText("Elegir archivo");
         elegirArchivo.setToolTipText("");
         elegirArchivo.setBorder(null);
@@ -115,73 +115,134 @@ public class UserExpediente extends javax.swing.JFrame {
             }
         });
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane1.setViewportView(jTextArea2);
+        enviarRealizarNuevoExpediente.setBackground(new java.awt.Color(102, 102, 102));
+        enviarRealizarNuevoExpediente.setForeground(new java.awt.Color(255, 255, 255));
+        enviarRealizarNuevoExpediente.setText("Enviar y hacer otra solicitud");
+        enviarRealizarNuevoExpediente.setBorder(null);
+        enviarRealizarNuevoExpediente.setBorderPainted(false);
+        enviarRealizarNuevoExpediente.setDefaultCapable(false);
+        enviarRealizarNuevoExpediente.setFocusPainted(false);
+        enviarRealizarNuevoExpediente.setFocusable(false);
+        enviarRealizarNuevoExpediente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarRealizarNuevoExpedienteActionPerformed(evt);
+            }
+        });
+
+        EnviarExpediente.setBackground(new java.awt.Color(0, 102, 255));
+        EnviarExpediente.setForeground(new java.awt.Color(255, 255, 255));
+        EnviarExpediente.setText("Enviar expediente");
+        EnviarExpediente.setBorder(null);
+        EnviarExpediente.setDefaultCapable(false);
+        EnviarExpediente.setFocusPainted(false);
+        EnviarExpediente.setFocusable(false);
+        EnviarExpediente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EnviarExpedienteActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Usuario");
+
+        jCheckBox1.setText("Ultimo usuario creado (default@example.com)");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
+        tipoExpediente1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(noDocumentoSeleccionado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(elegirArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(enviarRealizarNuevoExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(EnviarExpediente, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jCheckBox1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nuevoExpediente)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(usuariosModel, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(tipoExpediente1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(nuevoExpediente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addGap(68, 68, 68)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(noDocumentoSeleccionado)
+                    .addComponent(elegirArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(usuariosModel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addComponent(jCheckBox1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(enviarRealizarNuevoExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EnviarExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(87, 87, 87)
+                    .addComponent(tipoExpediente1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(447, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(tipoExpediente, 0, 492, Short.MAX_VALUE)
-                            .addComponent(nuevoExpediente)
-                            .addComponent(jScrollPane1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(noDocumentoSeleccionado)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(elegirArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(enviarRealizarNuevoExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(EnviarExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(27, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(nuevoExpediente)
-                .addGap(26, 26, 26)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tipoExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(noDocumentoSeleccionado)
-                    .addComponent(elegirArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EnviarExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(enviarRealizarNuevoExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void EnviarExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarExpedienteActionPerformed
-        realizarNuevoExpediente();
+        enviar();
         dispose();
-        UserMain userMain = new UserMain(this.correoElectronico);
-        userMain.setVisible(true);
     }//GEN-LAST:event_EnviarExpedienteActionPerformed
 
     private void enviarRealizarNuevoExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarRealizarNuevoExpedienteActionPerformed
-        realizarNuevoExpediente();
+        enviar();
         limpiarFormulario();
 
     }//GEN-LAST:event_enviarRealizarNuevoExpedienteActionPerformed
@@ -200,8 +261,14 @@ public class UserExpediente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_elegirArchivoActionPerformed
 
-    private void realizarNuevoExpediente() {
-        String tipoExpedienteValue = (String) tipoExpediente.getSelectedItem();
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void enviar() {
+
+        String tipoExpedienteValue = (String) tipoExpediente1.getSelectedItem();
+        System.out.println("EXPEDIENTE" + tipoExpedienteValue);
         String asuntoValue = jTextArea2.getText();
         int prioridadValue;
         switch (TipoExpediente.fromStringToEnum(tipoExpedienteValue)) {
@@ -230,17 +297,25 @@ public class UserExpediente extends javax.swing.JFrame {
                 prioridadValue = 0;
                 break;
         }
+        User foundUser;
+        if (jCheckBox1.isSelected()) {
+            foundUser = Servicio.UsersServicios.users[Servicio.UsersServicios.users.length - 1];
 
-        User foundUser = Servicio.UsersServicios.obtenerUsuario(this.correoElectronico);
+        } else {
+            foundUser = Servicio.UsersServicios.obtenerUsuario((String) usuariosModel.getSelectedItem());
+        }
+
         TiempoExpediente tiempoExpediente = new TiempoExpediente();
         tiempoExpediente.setFechaInicial(LocalDateTime.now());
-        Expediente expedienteNuevo = new Expediente(Utils.Utils.generarIdentificador(), prioridadValue, TipoExpediente.fromStringToEnum(tipoExpedienteValue), asuntoValue, foundUser, selectedFile, tiempoExpediente);
+        Expediente expedienteNuevo = new Expediente(Utils.Utils.generarIdentificador(), prioridadValue, TipoExpediente.fromStringToEnum(tipoExpedienteValue), this.dependencia, asuntoValue, foundUser, selectedFile, tiempoExpediente);
+        expedienteNuevo.getAreas().encolar(this.dependencia);
         Servicio.ExpedientesServicios.agregarExpediente(expedienteNuevo);
         foundUser.agregarExpediente(expedienteNuevo);
     }
 
     private void limpiarFormulario() {
-        tipoExpediente.setSelectedIndex(0);
+        tipoExpediente1.setSelectedIndex(0);
+        usuariosModel.setSelectedIndex(0);
         jTextArea2.setText("");
         noDocumentoSeleccionado.setText("No documento seleccionado");
         selectedFile = null;
@@ -276,7 +351,7 @@ public class UserExpediente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserExpediente("default@example.com", "").setVisible(true);
+                new UserExpediente(TipoDependencia.POR_ASIGNAR).setVisible(true);
             }
         });
     }
@@ -285,13 +360,17 @@ public class UserExpediente extends javax.swing.JFrame {
     private javax.swing.JButton EnviarExpediente;
     private javax.swing.JButton elegirArchivo;
     private javax.swing.JButton enviarRealizarNuevoExpediente;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JLabel noDocumentoSeleccionado;
     private javax.swing.JLabel nuevoExpediente;
-    private javax.swing.JComboBox<String> tipoExpediente;
+    private javax.swing.JComboBox<String> tipoExpediente1;
+    private javax.swing.JComboBox<String> usuariosModel;
     // End of variables declaration//GEN-END:variables
 }

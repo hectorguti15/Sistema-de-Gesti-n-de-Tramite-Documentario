@@ -5,7 +5,9 @@
 package interfaces;
 
 import Enums.TipoDependencia;
+import Enums.TipoEstado;
 import Enums.TipoExpediente;
+import Utils.Utils;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -18,19 +20,24 @@ import modelos.PersonaDependencia;
  *
  * @author hecto
  */
-public class PersonalMain extends javax.swing.JFrame {
+public class PersonalExpedientes extends javax.swing.JFrame {
 
     /**
      * Creates new form PersonalMain
      */
     PersonaDependencia trabajador;
 
-    public PersonalMain(PersonaDependencia trabajador) {
+    public PersonalExpedientes(PersonaDependencia trabajador) {
         initComponents();
+        setLocation(280, 50);
+        this.setLocationRelativeTo(this);
+        Utils.Setimage(jLabel3, "src/images/logo.png");
+        this.repaint();
+
         this.trabajador = trabajador;
         completarTabla();
         jLabel2.setText("Hola " + trabajador.getNombre());
-        jLabel1.setText("Estos son los expedientes en cola en el área de " + TipoDependencia.fromEnumToString(trabajador.getTipoDepenedencia()));
+        jLabel1.setText("Estos son los expedientes en cola en el " + TipoDependencia.fromEnumToString(trabajador.getTipoDepenedencia()));
 
     }
 
@@ -43,15 +50,22 @@ public class PersonalMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         expedientesColaSegunArea = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel2.setText("Expedientes");
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Estos son los expedientes en cola en el área de");
 
         expedientesColaSegunArea.setModel(new javax.swing.table.DefaultTableModel(
@@ -67,34 +81,50 @@ public class PersonalMain extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(expedientesColaSegunArea);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel2.setText("Hola");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(186, 186, 186)))
+                        .addGap(102, 102, 102)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -117,27 +147,28 @@ public class PersonalMain extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PersonalMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PersonalExpedientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PersonalMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PersonalExpedientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PersonalMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PersonalExpedientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PersonalMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PersonalExpedientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PersonalMain(new PersonaDependencia()).setVisible(true);
+                new PersonalExpedientes(new PersonaDependencia()).setVisible(true);
             }
         });
     }
 
     private void completarTabla() {
         Expediente[] expedientes = Servicio.ExpedientesServicios.getExpedientesArea(this.trabajador.getTipoDepenedencia());
-
+        System.out.println("ExpedientesPERSONAAAAAAL" + expedientes);
         DefaultTableModel model = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{"User", "Tipo expediente ", "Prioridad", "Tiempo inicio",}
@@ -158,12 +189,14 @@ public class PersonalMain extends javax.swing.JFrame {
                 LocalDateTime fechaInicial = expedientes[i].getTiempoExpediente().getFechaInicial();
                 Date fechaInicialDate = Date.from(fechaInicial.atZone(ZoneId.systemDefault()).toInstant());
 
-                model.addRow(new Object[]{
-                    expedientes[i].getUser().getNombre(),
-                    TipoExpediente.fromEnumToString(expedientes[i].getTipoExpediente()),
-                    expedientes[i].getPrioridad(),
-                    dateFormat.format(fechaInicialDate)
-                });
+                if (expedientes[i].getEstado() != TipoEstado.ESPERA) {
+                    model.addRow(new Object[]{
+                        expedientes[i].getUser().getNombre(),
+                        TipoExpediente.fromEnumToString(expedientes[i].getTipoExpediente()),
+                        expedientes[i].getPrioridad(),
+                        dateFormat.format(fechaInicialDate)
+                    });
+                }
             } else {
                 System.out.println("Expediente en posición " + i + " es null.");
             }
@@ -175,12 +208,11 @@ public class PersonalMain extends javax.swing.JFrame {
                 int row = expedientesColaSegunArea.rowAtPoint(evt.getPoint());
                 int column = expedientesColaSegunArea.columnAtPoint(evt.getPoint());
                 if (row >= 0 && column >= 0) {
-                    System.out.println("CLICK EXPEDIENTE APROBAR");
-                    ExpedienteAprobacion expedienteAprobacion = new ExpedienteAprobacion(expedientes[row], () -> {
-                        completarTabla();
-                    }
-                    );
-                    expedienteAprobacion.setVisible(true);
+                    ExpedienteDecisionPersonal decision = new ExpedienteDecisionPersonal(expedientes[row],
+                            () -> {
+                                completarTabla();
+                            });
+                    decision.setVisible(true);
                 }
             }
         });
@@ -191,6 +223,8 @@ public class PersonalMain extends javax.swing.JFrame {
     private javax.swing.JTable expedientesColaSegunArea;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

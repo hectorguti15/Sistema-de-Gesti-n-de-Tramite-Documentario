@@ -7,6 +7,7 @@ package interfaces;
 import Enums.TipoDependencia;
 import Enums.TipoEstado;
 import Enums.TipoExpediente;
+import Utils.Utils;
 import modelos.Expediente;
 
 /**
@@ -22,6 +23,10 @@ public class ExpedienteInfo extends javax.swing.JFrame {
 
     public ExpedienteInfo(Expediente expediente) {
         initComponents();
+        setLocation(280, 50);
+        this.setLocationRelativeTo(this);
+        Utils.Setimage(jLabel2, "src/images/logo.png");
+        this.repaint();
         this.expediente = expediente;
         System.out.println(this.expediente.getAsunto());
         areaDescripcion.setText(TipoDependencia.fromEnumToString(this.expediente.getTipoDependencia()));
@@ -41,7 +46,13 @@ public class ExpedienteInfo extends javax.swing.JFrame {
     private void initComponents() {
 
         jFileChooser1 = new javax.swing.JFileChooser();
+        jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        asuntoDescripcion = new javax.swing.JLabel();
+        documentoDescripcion = new javax.swing.JLabel();
+        asunto1 = new javax.swing.JLabel();
+        documentoReferencia1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         area = new javax.swing.JLabel();
@@ -50,24 +61,76 @@ public class ExpedienteInfo extends javax.swing.JFrame {
         estadoActualDescripcion = new javax.swing.JLabel();
         tipoExpedienteDescripcion = new javax.swing.JLabel();
         areaDescripcion = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        asuntoDescripcion = new javax.swing.JLabel();
-        documentoDescripcion = new javax.swing.JLabel();
-        asunto1 = new javax.swing.JLabel();
-        documentoReferencia1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setForeground(new java.awt.Color(255, 102, 0));
         jLabel1.setText("Información ingresada");
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        asuntoDescripcion.setBackground(new java.awt.Color(255, 255, 255));
+        asuntoDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        asuntoDescripcion.setForeground(new java.awt.Color(51, 51, 51));
+        asuntoDescripcion.setText("AsuntoDescripcion");
+
+        documentoDescripcion.setBackground(new java.awt.Color(255, 255, 255));
+        documentoDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        documentoDescripcion.setForeground(new java.awt.Color(51, 51, 51));
+        documentoDescripcion.setText("documentoReferenciaDescripcion");
+
+        asunto1.setBackground(new java.awt.Color(255, 255, 255));
+        asunto1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        asunto1.setForeground(new java.awt.Color(51, 51, 51));
+        asunto1.setText("Asunto:");
+
+        documentoReferencia1.setBackground(new java.awt.Color(255, 255, 255));
+        documentoReferencia1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        documentoReferencia1.setForeground(new java.awt.Color(51, 51, 51));
+        documentoReferencia1.setText("Documento de referencia:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(asunto1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(asuntoDescripcion))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(documentoReferencia1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(documentoDescripcion)))
+                .addContainerGap(262, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(asuntoDescripcion)
+                    .addComponent(asunto1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(documentoReferencia1)
+                    .addComponent(documentoDescripcion))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel5.setForeground(new java.awt.Color(255, 102, 0));
         jLabel5.setText("Proceso:");
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(255, 153, 0));
+        jPanel1.setForeground(new java.awt.Color(255, 153, 51));
 
         area.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         area.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,59 +195,6 @@ public class ExpedienteInfo extends javax.swing.JFrame {
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
-
-        asuntoDescripcion.setBackground(new java.awt.Color(255, 255, 255));
-        asuntoDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        asuntoDescripcion.setForeground(new java.awt.Color(255, 255, 255));
-        asuntoDescripcion.setText("AsuntoDescripcion");
-
-        documentoDescripcion.setBackground(new java.awt.Color(255, 255, 255));
-        documentoDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        documentoDescripcion.setForeground(new java.awt.Color(255, 255, 255));
-        documentoDescripcion.setText("documentoReferenciaDescripcion");
-
-        asunto1.setBackground(new java.awt.Color(255, 255, 255));
-        asunto1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        asunto1.setForeground(new java.awt.Color(255, 255, 255));
-        asunto1.setText("Asunto:");
-
-        documentoReferencia1.setBackground(new java.awt.Color(255, 255, 255));
-        documentoReferencia1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        documentoReferencia1.setForeground(new java.awt.Color(255, 255, 255));
-        documentoReferencia1.setText("Documento de referencia:");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(asunto1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(asuntoDescripcion))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(documentoReferencia1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(documentoDescripcion)))
-                .addContainerGap(262, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(asuntoDescripcion)
-                    .addComponent(asunto1))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(documentoReferencia1)
-                    .addComponent(documentoDescripcion))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-
         jButton1.setBackground(new java.awt.Color(51, 51, 51));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Cerrar");
@@ -198,36 +208,60 @@ public class ExpedienteInfo extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5))
-                .addGap(0, 12, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -287,9 +321,11 @@ public class ExpedienteInfo extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel tipoExpediente;
     private javax.swing.JLabel tipoExpedienteDescripcion;
     // End of variables declaration//GEN-END:variables

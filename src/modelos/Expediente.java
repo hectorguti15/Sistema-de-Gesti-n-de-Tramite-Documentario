@@ -19,11 +19,11 @@ public class Expediente {
     private TiempoExpediente tiempoExpediente;
     private Colas areas;
 
-    public Expediente(String numeroExpediente, int prioridad, TipoExpediente tipoExpediente, String asunto, User user, File documentoReferencia, TiempoExpediente tiempoExpediente) {
+    public Expediente(String numeroExpediente, int prioridad, TipoExpediente tipoExpediente, TipoDependencia dependencia, String asunto, User user, File documentoReferencia, TiempoExpediente tiempoExpediente) {
         this.numeroExpediente = numeroExpediente;
         this.prioridad = prioridad;
         this.tipoExpediente = tipoExpediente;
-        this.tipoDependencia = TipoDependencia.POR_ASIGNAR;
+        this.tipoDependencia = dependencia;
         this.estado = TipoEstado.ESPERA;
         this.user = user;
         this.asunto = asunto;

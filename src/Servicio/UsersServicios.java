@@ -6,7 +6,7 @@ import modelos.User;
 public class UsersServicios {
 
     public static User[] users = new User[1];
-    private static int userCount = 0;
+    public static int userCount = 0;
 
     public static void agregarUsuario(User user) {
 

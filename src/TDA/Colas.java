@@ -73,14 +73,14 @@ public class Colas<T> {
     }
 
     public void expandirCapacidad() {
-        int nuevoTamaño = MAX_SIZE * 2; 
+        int nuevoTamaño = MAX_SIZE * 2;
         T[] nuevaLista = (T[]) new Object[nuevoTamaño];
         for (int i = 0; i < MAX_SIZE; i++) {
             nuevaLista[i] = lista[(front + i) % MAX_SIZE];
         }
         this.lista = nuevaLista;
         this.MAX_SIZE = nuevoTamaño;
-     
+
     }
 
     public void mostrarCola() {
@@ -89,9 +89,59 @@ public class Colas<T> {
         }
         System.out.println("");
     }
-    
-    public T obtenerPrimero(){
+
+    public T obtenerPrimero() {
         return this.lista[0];
+    }
+
+    public T buscarYDesencolar(T item) {
+        if (estaVacia()) {
+            System.out.println("La cola está vacía");
+            return null;
+        }
+
+        int index = front;
+        boolean encontrado = false;
+
+    
+        while (true) {
+            if (lista[index].equals(item)) {
+                encontrado = true;
+                break;
+            }
+            if (index == back) {
+                break;
+            }
+            index = (index + 1) % MAX_SIZE;
+        }
+
+        if (!encontrado) {
+            System.out.println("Elemento no encontrado");
+            return null;
+        }
+
+        T encontradoItem = lista[index];
+
+
+        if (index == front) {
+            desencolar();
+        } else {
+            while (index != back) {
+                lista[index] = lista[(index + 1) % MAX_SIZE];
+                index = (index + 1) % MAX_SIZE;
+            }
+            lista[back] = null;
+            if (back == 0) {
+                back = MAX_SIZE - 1;
+            } else {
+                back--;
+            }
+            if (back < front) {
+                front = back = -1;
+            }
+        }
+
+        return encontradoItem;
     }
 
 }
