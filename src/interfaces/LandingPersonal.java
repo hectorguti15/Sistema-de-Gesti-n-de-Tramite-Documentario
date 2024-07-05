@@ -6,6 +6,11 @@ package interfaces;
 
 import Enums.TipoDependencia;
 import Utils.Utils;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.Timer;
 import modelos.PersonaDependencia;
 
 /**
@@ -18,6 +23,8 @@ public class LandingPersonal extends javax.swing.JFrame {
      * Creates new form main
      */
     PersonaDependencia trabajador;
+    private Timer timer;
+    private Timer expedienteTimer;
 
     public LandingPersonal(PersonaDependencia trabajador) {
         initComponents();
@@ -36,6 +43,9 @@ public class LandingPersonal extends javax.swing.JFrame {
 
         bienvenido.setText("¡Bienvenido de nuevo, " + trabajador.getNombre() + "!");
         areaDe.setText(TipoDependencia.fromEnumToString(trabajador.getTipoDepenedencia()));
+
+        empezarHora();
+        startExpedienteCheck();
     }
 
     /**
@@ -58,6 +68,7 @@ public class LandingPersonal extends javax.swing.JFrame {
         registrarExpediente = new javax.swing.JButton();
         areaDe = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,6 +125,8 @@ public class LandingPersonal extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("Hora: ");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -124,7 +137,8 @@ public class LandingPersonal extends javax.swing.JFrame {
                     .addComponent(bienvenido)
                     .addComponent(queDeseasHacer)
                     .addComponent(areaDe)
-                    .addComponent(registrarExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(registrarExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
@@ -162,7 +176,9 @@ public class LandingPersonal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(areaDe)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(29, 29, 29))
         );
 
@@ -200,7 +216,44 @@ public class LandingPersonal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+     private void empezarHora() {
 
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+                String currentTime = sdf.format(new Date());
+
+                jLabel3.setText("Hora: " + currentTime);
+            }
+        });
+        timer.start();
+    }
+
+    private void startExpedienteCheck() {
+
+        expedienteTimer = new Timer(20000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                checkExpedientes();
+            }
+        });
+        expedienteTimer.start();
+    }
+
+    private void checkExpedientes() {
+
+        int cantidadExpedientes = Servicio.ExpedientesServicios.getExpedientesArea(this.trabajador.getTipoDepenedencia()).length;
+
+        if (cantidadExpedientes > 0) {
+            AlertaPrioridad alerta = new AlertaPrioridad();
+
+            alerta.setSize(300, 200);
+            alerta.setLocationRelativeTo(this);
+            alerta.setVisible(true);
+        }
+    }
     private void registrarExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarExpedienteActionPerformed
         System.out.println("Registrar expediente " + this.trabajador.getTipoDepenedencia());
         UserExpediente userExpediente = new UserExpediente(this.trabajador.getTipoDepenedencia());
@@ -261,6 +314,7 @@ public class LandingPersonal extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel queDeseasHacer;

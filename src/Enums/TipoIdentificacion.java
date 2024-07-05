@@ -23,7 +23,7 @@ public enum TipoIdentificacion {
     public static String fromEnumToString(TipoIdentificacion tipoIdentificacion) {
         switch (tipoIdentificacion) {
             case TipoIdentificacion.PERSONA -> {
-                return "Persona";
+                return "Persona"; 
             }
             case TipoIdentificacion.TRABAJADOR_ULIMA -> {
                 return "Trabajador Ulima";

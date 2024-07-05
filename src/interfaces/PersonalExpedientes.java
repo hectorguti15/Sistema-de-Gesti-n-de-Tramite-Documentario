@@ -210,6 +210,10 @@ public class PersonalExpedientes extends javax.swing.JFrame {
                 int row = expedientesColaSegunArea.rowAtPoint(evt.getPoint());
                 int column = expedientesColaSegunArea.columnAtPoint(evt.getPoint());
                 if (row >= 0 && column >= 0) {
+                    if(row !=0){
+                        AlertaPrioridad alerta = new AlertaPrioridad();
+                        alerta.setVisible(true);
+                    }
                     ExpedienteDecisionPersonal decision = new ExpedienteDecisionPersonal(expedientes[row],
                             () -> {
                                 completarTabla();
