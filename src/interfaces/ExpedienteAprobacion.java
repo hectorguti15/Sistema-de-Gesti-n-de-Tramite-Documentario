@@ -14,6 +14,7 @@ import java.util.Date;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import modelos.Expediente;
+import modelos.TiempoExpediente;
 
 /**
  *
@@ -31,7 +32,7 @@ public class ExpedienteAprobacion extends javax.swing.JFrame {
         initComponents();
         this.callback = callback;
         this.expediente = expediente;
-        completeTables();
+        tablas();
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -60,6 +61,7 @@ public class ExpedienteAprobacion extends javax.swing.JFrame {
         expedienteInfo = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -132,6 +134,16 @@ public class ExpedienteAprobacion extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(255, 102, 0));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Salir");
+        jButton3.setBorder(null);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -140,28 +152,33 @@ public class ExpedienteAprobacion extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane2))
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(61, Short.MAX_VALUE))))
+                        .addContainerGap(61, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
@@ -192,15 +209,38 @@ public class ExpedienteAprobacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.out.println(this.expediente.getAreas());
-        this.expediente.getAreas().buscarYDesencolar(this.expediente.getTipoDependencia());
-        System.out.println(this.expediente.getAreas());
+        TipoDependencia desecolado = (TipoDependencia) this.expediente.getAreas().desencolar();
+        System.out.println("DESENCOLADO " + desecolado);
+        System.out.println("LENGTRHHHH " + this.expediente.getAreas().getLength()
+        );
+        if (this.expediente.getAreas().estaVacia()) {
+            this.expediente.setEstado(TipoEstado.FINALIZADO);
+            this.expediente.setTipoDependencia(TipoDependencia.POR_ASIGNAR);
+            TiempoExpediente tiempoExpediente = new TiempoExpediente();
+            tiempoExpediente.setFechaFinal(LocalDateTime.now());
+            tiempoExpediente.setFechaInicial(this.expediente.getTiempoExpediente().getFechaInicial());
+            this.expediente.setTiempoExpediente(tiempoExpediente);
+        } else {
+            this.expediente.setTipoDependencia((TipoDependencia) this.expediente.getAreas().obtenerPrimero());
+            System.out.println("Actualizar area");
+            System.out.println(this.expediente.getTipoDependencia());
+            this.callback.run();
+        }
+
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.expediente.setEstado(TipoEstado.CANCELADO);
+        this.callback.run();
+        dispose();
+
     }//GEN-LAST:event_jButton2ActionPerformed
-    private void completeTables() {
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+    private void tablas() {
         DefaultTableModel model1 = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{"Nombre", "Apellido", "Asunto", "Documento de referencia"}
@@ -289,6 +329,7 @@ public class ExpedienteAprobacion extends javax.swing.JFrame {
     private javax.swing.JTable expedienteInfo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -169,6 +169,7 @@ public class PersonalExpedientes extends javax.swing.JFrame {
     private void completarTabla() {
         Expediente[] expedientes = Servicio.ExpedientesServicios.getExpedientesArea(this.trabajador.getTipoDepenedencia());
         System.out.println("ExpedientesPERSONAAAAAAL" + expedientes);
+        System.out.println("completaaaar tablaaaaaaaaaaaaa");
         DefaultTableModel model = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{"User", "Tipo expediente ", "Prioridad", "Tiempo inicio",}
@@ -184,12 +185,13 @@ public class PersonalExpedientes extends javax.swing.JFrame {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
         for (int i = 0; i < expedientes.length; i++) {
+            System.out.println(expedientes[i]);
             if (expedientes[i] != null) {
                 System.out.println(expedientes[i].getNumeroExpediente() + TipoExpediente.fromEnumToString(expedientes[i].getTipoExpediente()));
                 LocalDateTime fechaInicial = expedientes[i].getTiempoExpediente().getFechaInicial();
                 Date fechaInicialDate = Date.from(fechaInicial.atZone(ZoneId.systemDefault()).toInstant());
-
-                if (expedientes[i].getEstado() != TipoEstado.ESPERA) {
+                System.out.println(expedientes[i].getEstado());
+                if (expedientes[i].getEstado() == TipoEstado.ESPERA || expedientes[i].getEstado() == TipoEstado.INGRESADO) {
                     model.addRow(new Object[]{
                         expedientes[i].getUser().getNombre(),
                         TipoExpediente.fromEnumToString(expedientes[i].getTipoExpediente()),

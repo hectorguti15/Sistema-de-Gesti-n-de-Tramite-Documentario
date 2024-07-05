@@ -24,7 +24,7 @@ public class Expediente {
         this.prioridad = prioridad;
         this.tipoExpediente = tipoExpediente;
         this.tipoDependencia = dependencia;
-        this.estado = TipoEstado.ESPERA;
+        this.estado = TipoEstado.INGRESADO;
         this.user = user;
         this.asunto = asunto;
         this.areas = new Colas<TipoDependencia>(2);

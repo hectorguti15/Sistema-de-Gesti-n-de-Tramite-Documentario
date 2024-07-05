@@ -30,7 +30,7 @@ public class LandingPersonal extends javax.swing.JFrame {
         bienvenido.setFont(Servicio.FuenteServicio.fuentes.fuente(Servicio.FuenteServicio.fuentes.PoppinsBold, 1, 18));
         queDeseasHacer.setFont(Servicio.FuenteServicio.fuentes.fuente(Servicio.FuenteServicio.fuentes.PoppinsRegular, 0, 14));
         registrarExpediente.setFont(Servicio.FuenteServicio.fuentes.fuente(Servicio.FuenteServicio.fuentes.PoppinsRegular, 0, 14));
-        registrarUsuario.setFont(Servicio.FuenteServicio.fuentes.fuente(Servicio.FuenteServicio.fuentes.PoppinsRegular, 0, 14));
+
         universidadDeLima.setFont(Servicio.FuenteServicio.fuentes.fuente(Servicio.FuenteServicio.fuentes.PoppinsRegular, 0, 14));
         areaDe.setFont(Servicio.FuenteServicio.fuentes.fuente(Servicio.FuenteServicio.fuentes.PoppinsRegular, 0, 14));
 
@@ -52,7 +52,6 @@ public class LandingPersonal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         bienvenido = new javax.swing.JLabel();
         queDeseasHacer = new javax.swing.JLabel();
-        registrarUsuario = new javax.swing.JButton();
         universidadDeLima = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         verTodosLosExpedientes = new javax.swing.JButton();
@@ -73,18 +72,6 @@ public class LandingPersonal extends javax.swing.JFrame {
 
         queDeseasHacer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         queDeseasHacer.setText("¿Que deseas hacer hoy?");
-
-        registrarUsuario.setBackground(new java.awt.Color(255, 102, 0));
-        registrarUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        registrarUsuario.setText("Registrar un usuario");
-        registrarUsuario.setBorder(null);
-        registrarUsuario.setFocusPainted(false);
-        registrarUsuario.setFocusable(false);
-        registrarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarUsuarioActionPerformed(evt);
-            }
-        });
 
         universidadDeLima.setText("Universidad de Lima");
 
@@ -134,30 +121,24 @@ public class LandingPersonal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bienvenido)
-                            .addComponent(queDeseasHacer)
-                            .addComponent(areaDe))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(registrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bienvenido)
+                    .addComponent(queDeseasHacer)
+                    .addComponent(areaDe)
+                    .addComponent(registrarExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(419, 419, 419)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(17, 17, 17))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(verTodosLosExpedientes, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(universidadDeLima)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(registrarExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(verTodosLosExpedientes, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(57, 57, 57))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,28 +146,24 @@ public class LandingPersonal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(bienvenido)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(queDeseasHacer)
-                            .addComponent(universidadDeLima))
-                        .addGap(26, 26, 26))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(bienvenido)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(queDeseasHacer))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(universidadDeLima)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(registrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(registrarExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(verTodosLosExpedientes, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(areaDe)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))))
+                .addGap(18, 18, 18)
+                .addComponent(areaDe)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -197,6 +174,7 @@ public class LandingPersonal extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -222,11 +200,6 @@ public class LandingPersonal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void registrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarUsuarioActionPerformed
-        UserRegister userRegister = new UserRegister();
-        userRegister.setVisible(true);
-    }//GEN-LAST:event_registrarUsuarioActionPerformed
 
     private void registrarExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarExpedienteActionPerformed
         System.out.println("Registrar expediente " + this.trabajador.getTipoDepenedencia());
@@ -292,7 +265,6 @@ public class LandingPersonal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel queDeseasHacer;
     private javax.swing.JButton registrarExpediente;
-    private javax.swing.JButton registrarUsuario;
     private javax.swing.JLabel universidadDeLima;
     private javax.swing.JButton verTodosLosExpedientes;
     // End of variables declaration//GEN-END:variables

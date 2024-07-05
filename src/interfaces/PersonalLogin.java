@@ -280,7 +280,7 @@ public class PersonalLogin extends javax.swing.JFrame {
                     throw new IllegalArgumentException("Este ingreso es solo para administradores");
                 }
                 dispose();
-                ExpedienteAdministrador administradorPage = new ExpedienteAdministrador();
+                LandingAdministrador administradorPage = new LandingAdministrador();
                 administradorPage.setVisible(true);
             } else {
                 PersonaDependencia trabajador = null;

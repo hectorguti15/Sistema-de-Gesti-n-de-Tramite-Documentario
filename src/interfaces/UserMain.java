@@ -178,7 +178,7 @@ public class UserMain extends javax.swing.JFrame {
 
         DefaultTableModel model = new DefaultTableModel(
                 new Object[][]{},
-                new String[]{"N° expediente", "Solicitud", "Área actual", "Estado", "Tiempo inicio"}
+                new String[]{"N° expediente", "Solicitud", "Área actual", "Estado", "Tiempo inicio", "Tiempo final"}
         ) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -186,28 +186,58 @@ public class UserMain extends javax.swing.JFrame {
             }
         };
 
-        jTable1.setModel(model); // Establece el modelo en la tabla
+        jTable1.setModel(model); 
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
-
         System.out.println("RECORRERA" + expedientesObj.length);
-        for (int i = 0; i < expedientes.length; i++) {
-            if (expedientes[i] != null) {
-                System.out.println(expedientes[i].getNumeroExpediente() + TipoExpediente.fromEnumToString(expedientes[i].getTipoExpediente()));
-                LocalDateTime fechaInicial = expedientes[i].getTiempoExpediente().getFechaInicial();
-                Date fechaInicialDate = Date.from(fechaInicial.atZone(ZoneId.systemDefault()).toInstant());
 
-                model.addRow(new Object[]{
-                    expedientes[i].getNumeroExpediente(),
-                    TipoExpediente.fromEnumToString(expedientes[i].getTipoExpediente()),
-                    TipoDependencia.fromEnumToString(expedientes[i].getTipoDependencia()),
-                    TipoEstado.fromEnumToString(expedientes[i].getEstado()),
-                    dateFormat.format(fechaInicialDate)
-                });
-            } else {
-                System.out.println("Expediente en posición " + i + " es null.");
+        if (expedientes != null) {
+            System.out.println("RECORRERA " + expedientes.length);
+            for (int i = 0; i < expedientes.length; i++) {
+                if (expedientes[i] != null) {
+                    System.out.println(expedientes[i].getNumeroExpediente() + TipoExpediente.fromEnumToString(expedientes[i].getTipoExpediente()));
+
+                    LocalDateTime fechaInicial = expedientes[i].getTiempoExpediente().getFechaInicial();
+                    LocalDateTime fechaFinal = expedientes[i].getTiempoExpediente().getFechaFinal();
+
+                    String fechaInicialStr;
+                    String fechaFinalStr;
+
+                    if (fechaInicial.equals(LocalDateTime.MIN) && fechaFinal.equals(LocalDateTime.MIN)) {
+                        fechaInicialStr = "En proceso";
+                        fechaFinalStr = "En proceso";
+                    } else {
+                 
+                        if (!fechaInicial.equals(LocalDateTime.MIN)) {
+                            Date fechaInicialDate = Date.from(fechaInicial.atZone(ZoneId.systemDefault()).toInstant());
+                            fechaInicialStr = dateFormat.format(fechaInicialDate);
+                        } else {
+                            fechaInicialStr = "En proceso";
+                        }
+
+                        if (!fechaFinal.equals(LocalDateTime.MIN)) {
+                            Date fechaFinalDate = Date.from(fechaFinal.atZone(ZoneId.systemDefault()).toInstant());
+                            fechaFinalStr = dateFormat.format(fechaFinalDate);
+                        } else {
+                            fechaFinalStr = "En proceso";
+                        }
+                    }
+
+                    model.addRow(new Object[]{
+                        expedientes[i].getNumeroExpediente(),
+                        TipoExpediente.fromEnumToString(expedientes[i].getTipoExpediente()),
+                        TipoDependencia.fromEnumToString(expedientes[i].getTipoDependencia()),
+                        TipoEstado.fromEnumToString(expedientes[i].getEstado()),
+                        fechaInicialStr,
+                        fechaFinalStr
+                    });
+                } else {
+                    System.out.println("Expediente en posición " + i + " es null.");
+                }
             }
+        } else {
+            System.out.println("El array de expedientes es null.");
         }
 
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -218,7 +248,19 @@ public class UserMain extends javax.swing.JFrame {
                 if (row >= 0 && column >= 0) {
                     ExpedienteInfo expedienteUser = new ExpedienteInfo(expedientes[row]);
                     expedienteUser.setVisible(true);
-                    
+                }
+            }
+        });
+
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = jTable1.rowAtPoint(evt.getPoint());
+                int column = jTable1.columnAtPoint(evt.getPoint());
+                if (row >= 0 && column >= 0) {
+                    ExpedienteInfo expedienteUser = new ExpedienteInfo(expedientes[row]);
+                    expedienteUser.setVisible(true);
+
                 }
             }
         });

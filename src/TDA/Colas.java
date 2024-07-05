@@ -55,21 +55,28 @@ public class Colas<T> {
     }
 
     public T desencolar() {
-        if (!estaVacia()) {
-            T item = lista[front];
-            if (front == back) {
-                front = -1;
-                back = -1;
-            } else if (front != MAX_SIZE - 1) {
-                front++;
-            } else {
-                front = 0;
-            }
-            return item;
-        } else {
-            System.out.println("La cola esta vacia");
+        if (estaVacia()) {
+            System.out.println("La cola está vacía");
             return null;
         }
+        System.out.println("Desencolaaaaaar 131313");
+        T item = lista[front];
+        lista[front] = null; // Elimina el elemento
+
+        if (front == back) {
+            // La cola se vacía completamente
+            front = -1;
+            back = -1;
+        } else if (front != MAX_SIZE - 1) {
+            front++;
+        } else {
+            front = 0;
+        }
+
+        // Filtrar la cola para eliminar valores nulos y mantener el orden
+        filtrarCola();
+
+        return item;
     }
 
     public void expandirCapacidad() {
@@ -94,20 +101,17 @@ public class Colas<T> {
         return this.lista[0];
     }
 
-    public T buscarYDesencolar(T item) {
+    public int getLength() {
         if (estaVacia()) {
-            System.out.println("La cola está vacía");
-            return null;
+            return 0;
         }
 
+        int count = 0;
         int index = front;
-        boolean encontrado = false;
 
-    
         while (true) {
-            if (lista[index].equals(item)) {
-                encontrado = true;
-                break;
+            if (lista[index] != null) {
+                count++;
             }
             if (index == back) {
                 break;
@@ -115,33 +119,31 @@ public class Colas<T> {
             index = (index + 1) % MAX_SIZE;
         }
 
-        if (!encontrado) {
-            System.out.println("Elemento no encontrado");
-            return null;
+        return count;
+    }
+
+    private void filtrarCola() {
+        if (estaVacia()) {
+            return;
         }
 
-        T encontradoItem = lista[index];
+        T[] nuevaLista = (T[]) new Object[MAX_SIZE];
+        int index = 0;
+        int i = front;
 
-
-        if (index == front) {
-            desencolar();
-        } else {
-            while (index != back) {
-                lista[index] = lista[(index + 1) % MAX_SIZE];
-                index = (index + 1) % MAX_SIZE;
+        while (true) {
+            if (lista[i] != null) {
+                nuevaLista[index++] = lista[i];
             }
-            lista[back] = null;
-            if (back == 0) {
-                back = MAX_SIZE - 1;
-            } else {
-                back--;
+            if (i == back) {
+                break;
             }
-            if (back < front) {
-                front = back = -1;
-            }
+            i = (i + 1) % MAX_SIZE;
         }
 
-        return encontradoItem;
+        front = 0;
+        back = index - 1;
+        lista = nuevaLista;
     }
 
 }

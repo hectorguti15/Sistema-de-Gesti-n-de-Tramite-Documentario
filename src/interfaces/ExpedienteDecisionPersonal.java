@@ -19,9 +19,11 @@ public class ExpedienteDecisionPersonal extends javax.swing.JFrame {
     private Runnable callback;
 
     public ExpedienteDecisionPersonal(Expediente expediente, Runnable callback) {
+        initComponents();
+        setLocation(280, 50);
         this.expediente = expediente;
         this.callback = callback;
-        initComponents();
+        this.setLocationRelativeTo(this);
     }
 
     /**
@@ -116,7 +118,6 @@ public class ExpedienteDecisionPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.out.println("CLICK EXPEDIENTE APROBAR");
         dispose();
         ExpedienteAprobacion expedienteAprobacion = new ExpedienteAprobacion(this.expediente, this.callback
         );

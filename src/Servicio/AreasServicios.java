@@ -110,6 +110,9 @@ public class AreasServicios {
 
         AdministradorServicio.administrador.setPersonalDependencia(personalDependencia);
         System.out.println("SETEADO");
-   
+        
+    }
+    public static PersonaDependencia[] retornarPersonal(){
+        return AdministradorServicio.administrador.getPersonalDependencia();
     }
 }
